@@ -3,165 +3,1388 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Class Timetable | Computer Engineering</title>
+  <title>Computer Engineering Timetable</title>
   <meta name="description" content="Department of Computer Engineering Class Timetables" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231f2937'/><text y='50' x='50' font-family='sans-serif' font-size='50' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>CE</text></svg>" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #f9fafb;
-      color: #111827;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+/* Professional Timetable Stylesheet */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-    .header {
-      background: #ffffff;
-      padding: 32px 24px;
-      text-align: center;
-      border-bottom: 1px solid #e5e7eb;
-    }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+  min-height: 100vh;
+}
 
-    .header h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 8px;
-      letter-spacing: -0.025em;
-    }
+/* Top Navigation */
+.topbar {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-    .header p {
-      color: #6b7280;
-      font-size: 0.95rem;
-    }
+.back-btn {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.15s;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.back-btn:hover { background: #e5e7eb; color: #111827; }
 
-    .main-content {
-      flex: 1;
-      padding: 48px 24px;
-      max-width: 800px;
-      margin: 0 auto;
-      width: 100%;
-    }
+.topbar-info h1 { font-size: 1rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; }
+.topbar-info p { font-size: 0.75rem; color: #6b7280; }
 
-    .class-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
+/* Batch Selection */
+.batch-strip {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px 24px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.batch-strip::-webkit-scrollbar { display: none; }
 
-    .class-card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      padding: 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.batch-btn {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.12s;
+}
+.batch-btn:hover { background: #f3f4f6; border-color: #9ca3af; }
+.batch-btn.active {
+  background: #1f2937;
+  color: #ffffff;
+  border-color: #1f2937;
+}
 
-    .class-card:hover {
-      border-color: #2563eb;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-      transform: translateY(-2px);
-    }
+/* Day Selection */
+.day-strip {
+  display: flex;
+  gap: 6px;
+  padding: 16px 24px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.day-strip::-webkit-scrollbar { display: none; }
 
-    .class-name {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 4px;
-    }
+.day-btn {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.12s;
+  position: relative;
+}
+.day-btn:hover { border-color: #9ca3af; }
+.day-btn.active {
+  background: #111827;
+  color: #ffffff;
+  border-color: #111827;
+}
+.today-dot {
+  position: absolute;
+  top: 3px; right: 3px;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: #ef4444;
+}
 
-    .class-room {
-      font-size: 0.875rem;
-      color: #6b7280;
-    }
+/* Main Timeline */
+.timeline {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-    .footer {
-      background: #ffffff;
-      border-top: 1px solid #e5e7eb;
-      padding: 24px;
-      text-align: center;
-    }
+/* Break Card */
+.break-card {
+  background: transparent;
+  border-top: 1px dashed #d1d5db;
+  border-bottom: 1px dashed #d1d5db;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.break-label { font-size: 0.8rem; font-weight: 500; color: #6b7280; text-transform: uppercase; letter-spacing: 0.025em; }
+.break-time { font-size: 0.75rem; color: #9ca3af; font-family: monospace; }
 
-    .footer-text {
-      color: #9ca3af;
-      font-size: 0.75rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
+/* Lecture Card */
+.lecture-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-left: 3px solid #9ca3af;
+  border-radius: 6px;
+  padding: 14px;
+}
+.lecture-card.live {
+  border-color: #93c5fd;
+  border-left-color: #2563eb;
+  background: #eff6ff;
+}
+.lecture-card.next {
+  border-color: #fde047;
+  border-left-color: #eab308;
+  background: #fefce8;
+}
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-    }
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+.time-tag {
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: #374151;
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+.status-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.status-tag.live { background: #dbeafe; color: #1e40af; }
+.status-tag.next { background: #fef9c3; color: #78350f; }
 
-    .social-links a {
-      color: #9ca3af;
-      text-decoration: none;
-      font-size: 0.75rem;
-      transition: color 0.15s;
-    }
+.card-subject { font-size: 0.95rem; font-weight: 600; color: #111827; margin-bottom: 2px; }
+.card-fullname { font-size: 0.8rem; color: #6b7280; margin-bottom: 10px; }
 
-    .social-links a:hover {
-      color: #4b5563;
-    }
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #f3f4f6;
+  font-size: 0.75rem;
+}
+.card-prof { color: #374151; font-weight: 500; }
+.card-room { color: #4b5563; font-family: monospace; }
 
-    @media (max-width: 640px) {
-      .main-content { padding: 32px 16px; }
-      .class-grid { grid-template-columns: 1fr; }
-    }
+/* Practical Header */
+.practical-header {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.practical-title { font-size: 0.8rem; font-weight: 600; color: #374151; text-transform: uppercase; letter-spacing: 0.025em; }
+
+/* Batch Matrix */
+.batch-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.matrix-cell {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 8px;
+}
+.cell-batch { font-size: 0.7rem; font-weight: 600; color: #6b7280; margin-bottom: 3px; }
+.cell-subject { font-size: 0.8rem; font-weight: 500; color: #111827; margin-bottom: 2px; }
+.cell-room { font-size: 0.7rem; color: #9ca3af; font-family: monospace; }
+.cell-prof { font-size: 0.7rem; color: #4b5563; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Empty State */
+.empty-day {
+  background: transparent;
+  border: 1px dashed #d1d5db;
+  border-radius: 6px;
+  padding: 40px 20px;
+  text-align: center;
+  color: #6b7280;
+}
+.empty-day p { font-size: 0.9rem; }
+
+/* Footer */
+.page-footer {
+  text-align: center;
+  padding: 24px 24px 32px;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+.page-footer a {
+  color: #9ca3af;
+  text-decoration: none;
+  margin: 0 8px;
+  transition: color 0.12s;
+}
+.page-footer a:hover { color: #4b5563; }
+.footer-social { margin-top: 10px; display: flex; justify-content: center; gap: 12px; }
+
+@media (max-width: 640px) {
+  .topbar { padding: 10px 16px; }
+  .batch-strip { padding: 8px 16px; }
+  .day-strip { padding: 12px 16px 0; }
+  .timeline { padding: 16px; }
+}
+
+
+/* Landing Page Styles */
+.landing {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background: #ffffff;
+  padding: 32px 24px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+  letter-spacing: -0.025em;
+}
+
+.header p {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.main-content {
+  flex: 1;
+  padding: 48px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.class-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.class-card:hover {
+  border-color: #2563eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transform: translateY(-2px);
+}
+
+.class-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.class-room {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.footer {
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  padding: 24px;
+  text-align: center;
+}
+
+.footer-text {
+  color: #9ca3af;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.social-links a {
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 0.75rem;
+  transition: color 0.15s;
+}
+
+.social-links a:hover {
+  color: #4b5563;
+}
+
+.timetable-view {
+  display: none;
+}
+
+.timetable-view.active {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .main-content { padding: 32px 16px; }
+  .class-grid { grid-template-columns: 1fr; }
+}
   </style>
 </head>
 <body>
-  <header class="header">
-    <h1>Department Timetable Viewer</h1>
-    <p>Computer Engineering Program</p>
-  </header>
+  <!-- Landing Page -->
+  <div id="landing" class="landing">
+    <header class="header">
+      <h1>Department Timetable Viewer</h1>
+      <p>Computer Engineering Program</p>
+    </header>
 
-  <main class="main-content">
-    <div class="class-grid">
-      <a href="se1.html" class="class-card">
-        <span class="class-name">SE-1</span>
-        <span class="class-room">Room E201</span>
-      </a>
-      <a href="se2.html" class="class-card">
-        <span class="class-name">SE-2</span>
-        <span class="class-room">Room E202</span>
-      </a>
-      <a href="te1.html" class="class-card">
-        <span class="class-name">TE-1</span>
-        <span class="class-room">Room E203</span>
-      </a>
-      <a href="te2.html" class="class-card">
-        <span class="class-name">TE-2</span>
-        <span class="class-room">Room E204</span>
-      </a>
-      <a href="be.html" class="class-card">
-        <span class="class-name">BE</span>
-        <span class="class-room">Room E204</span>
-      </a>
+    <main class="main-content">
+      <div class="class-grid">
+        <div class="class-card" onclick="showTimetable('SE1')">
+          <span class="class-name">SE-1</span>
+          <span class="class-room">Room E201</span>
+        </div>
+        <div class="class-card" onclick="showTimetable('SE2')">
+          <span class="class-name">SE-2</span>
+          <span class="class-room">Room E202</span>
+        </div>
+        <div class="class-card" onclick="showTimetable('TE1')">
+          <span class="class-name">TE-1</span>
+          <span class="class-room">Room E203</span>
+        </div>
+        <div class="class-card" onclick="showTimetable('TE2')">
+          <span class="class-name">TE-2</span>
+          <span class="class-room">Room E204</span>
+        </div>
+        <div class="class-card" onclick="showTimetable('BE')">
+          <span class="class-name">BE</span>
+          <span class="class-room">Room E204</span>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-text">
+        Maintained by Swaraj Shelke
+        <div class="social-links">
+          <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SE1 Timetable View -->
+  <div id="view-SE1" class="timetable-view">
+    <header class="topbar">
+      <button class="back-btn" onclick="showLanding()">&larr;</button>
+      <div class="topbar-info">
+        <h1>SE1 Timetable</h1>
+        <p>Computer Engineering • Room E201</p>
+      </div>
+    </header>
+
+    <div class="batch-strip">
+      <button class="batch-btn active" data-batch="ALL">ALL</button>
+      <button class="batch-btn" data-batch="A1">A1</button>
+      <button class="batch-btn" data-batch="A2">A2</button>
+      <button class="batch-btn" data-batch="A3">A3</button>
+      <button class="batch-btn" data-batch="B1">B1</button>
+      <button class="batch-btn" data-batch="B2">B2</button>
+      <button class="batch-btn" data-batch="B3">B3</button>
+      <button class="batch-btn" data-batch="C1">C1</button>
+      <button class="batch-btn" data-batch="C2">C2</button>
+      <button class="batch-btn" data-batch="C3">C3</button>
     </div>
-  </main>
 
-  <footer class="footer">
-    <div class="footer-text">
+    <div class="day-strip">
+      <button class="day-btn" data-day="1">Mon</button>
+      <button class="day-btn" data-day="2">Tue</button>
+      <button class="day-btn" data-day="3">Wed</button>
+      <button class="day-btn" data-day="4">Thu</button>
+      <button class="day-btn" data-day="5">Fri</button>
+    </div>
+
+    <main class="timeline" id="timeline-SE1"></main>
+
+    <footer class="page-footer">
       Maintained by Swaraj Shelke
-      <div class="social-links">
+      <div class="footer-social">
         <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
       </div>
+    </footer>
+  </div>
+
+  <!-- SE2 Timetable View -->
+  <div id="view-SE2" class="timetable-view">
+    <header class="topbar">
+      <button class="back-btn" onclick="showLanding()">&larr;</button>
+      <div class="topbar-info">
+        <h1>SE2 Timetable</h1>
+        <p>Computer Engineering • Room E202</p>
+      </div>
+    </header>
+
+    <div class="day-strip">
+      <button class="day-btn" data-day="1">Mon</button>
+      <button class="day-btn" data-day="2">Tue</button>
+      <button class="day-btn" data-day="3">Wed</button>
+      <button class="day-btn" data-day="4">Thu</button>
+      <button class="day-btn" data-day="5">Fri</button>
     </div>
-  </footer>
+
+    <main class="timeline" id="timeline-SE2"></main>
+
+    <footer class="page-footer">
+      Maintained by Swaraj Shelke
+      <div class="footer-social">
+        <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- TE1 Timetable View -->
+  <div id="view-TE1" class="timetable-view">
+    <header class="topbar">
+      <button class="back-btn" onclick="showLanding()">&larr;</button>
+      <div class="topbar-info">
+        <h1>TE1 Timetable</h1>
+        <p>Computer Engineering • Room E203</p>
+      </div>
+    </header>
+
+    <div class="batch-strip">
+      <button class="batch-btn active" data-batch="ALL">ALL</button>
+      <button class="batch-btn" data-batch="A1">A1</button>
+      <button class="batch-btn" data-batch="A2">A2</button>
+      <button class="batch-btn" data-batch="A3">A3</button>
+      <button class="batch-btn" data-batch="B1">B1</button>
+      <button class="batch-btn" data-batch="B2">B2</button>
+      <button class="batch-btn" data-batch="B3">B3</button>
+      <button class="batch-btn" data-batch="C1">C1</button>
+      <button class="batch-btn" data-batch="C2">C2</button>
+      <button class="batch-btn" data-batch="C3">C3</button>
+    </div>
+
+    <div class="day-strip">
+      <button class="day-btn" data-day="1">Mon</button>
+      <button class="day-btn" data-day="2">Tue</button>
+      <button class="day-btn" data-day="3">Wed</button>
+      <button class="day-btn" data-day="4">Thu</button>
+      <button class="day-btn" data-day="5">Fri</button>
+    </div>
+
+    <main class="timeline" id="timeline-TE1"></main>
+
+    <footer class="page-footer">
+      Maintained by Swaraj Shelke
+      <div class="footer-social">
+        <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- TE2 Timetable View -->
+  <div id="view-TE2" class="timetable-view">
+    <header class="topbar">
+      <button class="back-btn" onclick="showLanding()">&larr;</button>
+      <div class="topbar-info">
+        <h1>TE2 Timetable</h1>
+        <p>Computer Engineering • Room E204</p>
+      </div>
+    </header>
+
+    <div class="day-strip">
+      <button class="day-btn" data-day="1">Mon</button>
+      <button class="day-btn" data-day="2">Tue</button>
+      <button class="day-btn" data-day="3">Wed</button>
+      <button class="day-btn" data-day="4">Thu</button>
+      <button class="day-btn" data-day="5">Fri</button>
+    </div>
+
+    <main class="timeline" id="timeline-TE2"></main>
+
+    <footer class="page-footer">
+      Maintained by Swaraj Shelke
+      <div class="footer-social">
+        <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- BE Timetable View -->
+  <div id="view-BE" class="timetable-view">
+    <header class="topbar">
+      <button class="back-btn" onclick="showLanding()">&larr;</button>
+      <div class="topbar-info">
+        <h1>BE Timetable</h1>
+        <p>Final Year Engineering • Room E204</p>
+      </div>
+    </header>
+
+    <div class="batch-strip">
+      <button class="batch-btn active" data-batch="ALL">ALL</button>
+      <button class="batch-btn" data-batch="A1">A1</button>
+      <button class="batch-btn" data-batch="A2">A2</button>
+      <button class="batch-btn" data-batch="B1">B1</button>
+      <button class="batch-btn" data-batch="B2">B2</button>
+      <button class="batch-btn" data-batch="C1">C1</button>
+      <button class="batch-btn" data-batch="C2">C2</button>
+    </div>
+
+    <div class="day-strip">
+      <button class="day-btn" data-day="1">Mon</button>
+      <button class="day-btn" data-day="2">Tue</button>
+      <button class="day-btn" data-day="3">Wed</button>
+      <button class="day-btn" data-day="4">Thu</button>
+      <button class="day-btn" data-day="5">Fri</button>
+    </div>
+
+    <main class="timeline" id="timeline-BE"></main>
+
+    <footer class="page-footer">
+      Maintained by Swaraj Shelke
+      <div class="footer-social">
+        <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+// Schedule Data
+const SE1_SCHEDULE = {
+            1: { // Monday
+                1: { type: 'theory', code: 'OS', name: 'Operating Systems', faculty: 'Mahesh Swami (MS)', room: 'E201' },
+                2: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', faculty: 'Kalyani Zore (KZ)', room: 'E201' },
+                3: { type: 'practical', batches: {
+                    'A1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101' },
+                    'A2': { code: 'CEP', name: 'CEP', faculty: 'Shreya Nehe', room: 'A101B' },
+                    'A3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B1': { code: 'CEP', name: 'CEP', faculty: 'Snehal Chaudhri', room: 'A204' },
+                    'B2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'B3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'C1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C2': { code: 'CEP', name: 'CEP', faculty: 'Jagruti Zope', room: 'A105' },
+                    'C3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' }
+                }},
+                4: { type: 'practical', batches: {
+                    'A1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101' },
+                    'A2': { code: 'CEP', name: 'CEP', faculty: 'Shreya Nehe', room: 'A101B' },
+                    'A3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B1': { code: 'CEP', name: 'CEP', faculty: 'Snehal Chaudhri', room: 'A204' },
+                    'B2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'B3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'C1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C2': { code: 'CEP', name: 'CEP', faculty: 'Jagruti Zope', room: 'A105' },
+                    'C3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' }
+                }},
+                5: { type: 'practical', batches: {
+                    'A1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'A2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'A3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'C1': { code: 'CEP', name: 'CEP', faculty: 'Neelam Jadhav', room: 'A104' },
+                    'C2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' }
+                }},
+                6: { type: 'practical', batches: {
+                    'A1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'A2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'A3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'C1': { code: 'CEP', name: 'CEP', faculty: 'Neelam Jadhav', room: 'A104' },
+                    'C2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' }
+                }}
+            },
+            2: { // Tuesday
+                1: { type: 'theory', code: 'DS', name: 'Data Structures', faculty: 'Nilima Patil (NP)', room: 'E201' },
+                2: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', faculty: 'Kalyani Zore (KZ)', room: 'E201' },
+                3: { type: 'theory', code: 'DELD', name: 'Digital Electronics & Logic Design', faculty: 'Snehal Chaudhri (SC)', room: 'E201' },
+                4: { type: 'theory', code: 'OS', name: 'Operating Systems', faculty: 'Mahesh Swami (MS)', room: 'E201' },
+                5: { type: 'practical', batches: {
+                    'A1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'A2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'A3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101B' },
+                    'B1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C2': { code: 'CEP', name: 'CEP', faculty: 'Jagruti Zope', room: 'A103' },
+                    'C3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' }
+                }},
+                6: { type: 'practical', batches: {
+                    'A1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'A2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'A3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101B' },
+                    'B1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C2': { code: 'CEP', name: 'CEP', faculty: 'Jagruti Zope', room: 'A103' },
+                    'C3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' }
+                }}
+            },
+            3: { // Wednesday
+                1: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', faculty: 'Kalyani Zore (KZ)', room: 'E201' },
+                2: { type: 'theory', code: 'DS', name: 'Data Structures', faculty: 'Nilima Patil (NP)', room: 'E201' },
+                3: { type: 'practical', batches: {
+                    'A1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101B' },
+                    'A3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'B1': { code: 'CEP', name: 'CEP', faculty: 'Snehal Chaudhri', room: 'A204' },
+                    'B2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106B' },
+                    'B3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'C1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106A' }
+                }},
+                4: { type: 'practical', batches: {
+                    'A1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101B' },
+                    'A3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'B1': { code: 'CEP', name: 'CEP', faculty: 'Snehal Chaudhri', room: 'A204' },
+                    'B2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106B' },
+                    'B3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'C1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106A' }
+                }},
+                5: { type: 'theory', code: 'DM', name: 'Discrete Mathematics', faculty: 'Dr. Maya Jadhav (Dr. MJ)', room: 'E201' },
+                6: { type: 'theory', code: 'ED', name: 'Engineering Drawing', faculty: 'Nilam Naidu (NN)', room: 'E201' }
+            },
+            4: { // Thursday
+                1: { type: 'theory', code: 'DELD', name: 'Digital Electronics & Logic Design', faculty: 'Snehal Chaudhri (SC)', room: 'E201' },
+                2: { type: 'theory', code: 'DS', name: 'Data Structures', faculty: 'Nilima Patil (NP)', room: 'E201' },
+                3: { type: 'practical', batches: {
+                    'A1': { code: 'CEP', name: 'CEP', faculty: 'Smita Sapkal', room: 'A106A' },
+                    'A2': { code: 'CEP', name: 'CEP', faculty: 'Shreya Nehe', room: 'A101B' },
+                    'A3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'B1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'B2': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'B3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106B' },
+                    'C1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' }
+                }},
+                4: { type: 'practical', batches: {
+                    'A1': { code: 'CEP', name: 'CEP', faculty: 'Smita Sapkal', room: 'A106A' },
+                    'A2': { code: 'CEP', name: 'CEP', faculty: 'Shreya Nehe', room: 'A101B' },
+                    'A3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'B1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'B2': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'B3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106B' },
+                    'C1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' }
+                }},
+                5: { type: 'practical', batches: {
+                    'A1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A3': { code: 'CEP', name: 'CEP', faculty: 'Mansi Singh', room: 'A101A' },
+                    'B1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106A' },
+                    'C3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' }
+                }},
+                6: { type: 'practical', batches: {
+                    'A1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A3': { code: 'CEP', name: 'CEP', faculty: 'Mansi Singh', room: 'A101A' },
+                    'B1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106A' },
+                    'C3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' }
+                }}
+            },
+            5: { // Friday
+                1: { type: 'theory', code: 'OS', name: 'Operating Systems', faculty: 'Mahesh Swami (MS)', room: 'E201' },
+                2: { type: 'theory', code: 'UHV', name: 'Universal Human Values', faculty: 'Snehal Jagtap (SJ)', room: 'E201' },
+                3: { type: 'practical', batches: {
+                    'A1': { code: 'CEP', name: 'CEP', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'A2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A3': { code: 'CEP', name: 'CEP', faculty: 'Nilima Patil', room: 'A105' },
+                    'B1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B2': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'B3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C1': { code: 'CEP', name: 'CEP', faculty: 'Neelam Jadhav', room: 'A103' },
+                    'C2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' }
+                }},
+                4: { type: 'practical', batches: {
+                    'A1': { code: 'CEP', name: 'CEP', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'A2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A3': { code: 'CEP', name: 'CEP', faculty: 'Nilima Patil', room: 'A105' },
+                    'B1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B2': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'B3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C1': { code: 'CEP', name: 'CEP', faculty: 'Neelam Jadhav', room: 'A103' },
+                    'C2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' }
+                }},
+                5: { type: 'theory', code: 'DM', name: 'Discrete Mathematics', faculty: 'Dr. Maya Jadhav (Dr. MJ)', room: 'E201' },
+                6: { type: 'theory', code: 'ED', name: 'Engineering Drawing', faculty: 'Nilam Naidu (NN)', room: 'E201' }
+            }
+        };
+const SE2_SCHEDULE = [
+      { day: 1, slot: 1, type: "theory", code: "DS", name: "Data Structures", professor: "Alka Kumbhar (AAK)", room: "E202" },
+      { day: 1, slot: 2, type: "theory", code: "OS", name: "Operating Systems", professor: "Smita Sapkal (SS)", room: "E202" },
+      
+      { day: 2, slot: 1, type: "theory", code: "OS", name: "Operating Systems", professor: "Smita Sapkal (SS)", room: "E202" },
+      { day: 2, slot: 2, type: "theory", code: "OOPCG", name: "OOP & Computer Graphics", professor: "Ashvini Kheole (APK)", room: "E202" },
+      { day: 2, slot: 3, type: "theory", code: "DS", name: "Data Structures", professor: "Alka Kumbhar (AAK)", room: "E202" },
+      { day: 2, slot: 4, type: "theory", code: "DELD", name: "Digital Electronics & Logic Design", professor: "Snehal Chaudhri (SC)", room: "E202" },
+      
+      { day: 3, slot: 1, type: "theory", code: "OS", name: "Operating Systems", professor: "Smita Sapkal (SS)", room: "E202" },
+      { day: 3, slot: 2, type: "theory", code: "OOPCG", name: "OOP & Computer Graphics", professor: "Ashvini Kheole (APK)", room: "E202" },
+      
+      { day: 4, slot: 1, type: "theory", code: "OOPCG", name: "OOP & Computer Graphics", professor: "Ashvini Kheole (APK)", room: "E202" },
+      { day: 4, slot: 2, type: "theory", code: "DELD", name: "Digital Electronics & Logic Design", professor: "Snehal Chaudhri (SC)", room: "E202" },
+      
+      { day: 5, slot: 1, type: "theory", code: "UHV", name: "Universal Human Values", professor: "Neelam Jadhav (NJ)", room: "E202" },
+      { day: 5, slot: 2, type: "theory", code: "DS", name: "Data Structures", professor: "Alka Kumbhar (AAK)", room: "E202" }
+    ];
+const TE1_SCHEDULE = {
+            "1": [
+                {
+                    time: "Slot 1-2",
+                    type: "practical",
+                    batches: {
+                        "A1": { subject: "AI Lab", faculty: "Pradnya Kothawade", room: "A103" },
+                        "A2": { subject: "CN Lab", faculty: "Sangeetha Navale", room: "A104" },
+                        "A3": { subject: "CC Lab", faculty: "Surekha Dhumal", room: "A101A" },
+                        "B1": { subject: "R&A", faculty: "Snehal Jagtap", room: "A102" },
+                        "B2": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "B3": { subject: "AI Lab", faculty: "Jagruti Zope", room: "A106A" },
+                        "C1": { subject: "CN Lab", faculty: "Snehal Chaudhri", room: "A204" },
+                        "C2": { subject: "CC Lab", faculty: "Rahul Korke", room: "A101B" },
+                        "C3": { subject: "R&A", faculty: "Ashvini Kheole", room: "A106B" }
+                    }
+                },
+                { time: "Slot 3", type: "theory", subject: "Open Elective", faculty: "-", room: "E203" },
+                { time: "Slot 4", type: "theory", subject: "Elective I (Cloud Computing)", faculty: "Surekha Dhumal (SD)", room: "E203" },
+                { time: "Slot 5", type: "theory", subject: "Theory of Computation", faculty: "Pradnya Kothawade (PK)", room: "E203" },
+                { time: "Slot 6", type: "theory", subject: "Computer Network Security", faculty: "Sangeetha Navale (SN)", room: "E203" }
+            ],
+            "2": [
+                {
+                    time: "Slot 1-2",
+                    type: "practical",
+                    batches: {
+                        "A1": { subject: "CN Lab", faculty: "Sangeetha Navale", room: "A104" },
+                        "A2": { subject: "CC Lab", faculty: "Surekha Dhumal", room: "A101A" },
+                        "A3": { subject: "R&A", faculty: "Shreya Nehe", room: "A102" },
+                        "B1": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "B2": { subject: "AI Lab", faculty: "Jagruti Zope", room: "A103" },
+                        "B3": { subject: "CN Lab", faculty: "Snehal Chaudhri", room: "A204" },
+                        "C1": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "C2": { subject: "CN Lab", faculty: "Mahesh Swami", room: "A105" },
+                        "C3": { subject: "CC Lab", faculty: "Rahul Korke", room: "A101B" }
+                    }
+                },
+                { time: "Slot 3", type: "theory", subject: "Artificial Intelligence", faculty: "Jagruti Zope (JZ)", room: "E203" },
+                { time: "Slot 4", type: "theory", subject: "Theory of Computation", faculty: "Pradnya Kothawade (PK)", room: "E203" },
+                { time: "Slot 5", type: "theory", subject: "Computer Network Security", faculty: "Sangeetha Navale (SN)", room: "E203" },
+                { time: "Slot 6", type: "theory", subject: "Technical Seminar", faculty: "-", room: "E203" }
+            ],
+            "3": [
+                {
+                    time: "Slot 1-2",
+                    type: "practical",
+                    batches: {
+                        "A1": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "A2": { subject: "R&A", faculty: "Snehal Jagtap", room: "A102" },
+                        "A3": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "B1": { subject: "AI Lab", faculty: "Pradnya Kothawade", room: "A103" },
+                        "B2": { subject: "CC Lab", faculty: "Surekha Dhumal", room: "A101A" },
+                        "B3": { subject: "CN Lab", faculty: "Smita Kathar", room: "A204" },
+                        "C1": { subject: "CC Lab", faculty: "Rahul Korke", room: "A101B" },
+                        "C2": { subject: "CN Lab", faculty: "Mahesh Swami", room: "A105" },
+                        "C3": { subject: "AI Lab", faculty: "Jagruti Zope", room: "A106A" }
+                    }
+                },
+                { time: "Slot 3", type: "theory", subject: "Theory of Computation", faculty: "Pradnya Kothawade (PK)", room: "E203" },
+                { time: "Slot 4", type: "theory", subject: "Computer Network Security", faculty: "Sangeetha Navale (SN)", room: "E203" },
+                {
+                    time: "Slot 5-6",
+                    type: "practical",
+                    batches: {
+                        "A1": { subject: "CC Lab", faculty: "Surekha Dhumal", room: "A101A" },
+                        "A2": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "A3": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "B1": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "B2": { subject: "CN Lab", faculty: "Snehal Chaudhri", room: "A204" },
+                        "B3": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "C1": { subject: "AI Lab", faculty: "Jagruti Zope", room: "A106A" },
+                        "C2": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "C3": { subject: "Self Study", faculty: "-", room: "Library" }
+                    }
+                }
+            ],
+            "4": [
+                {
+                    time: "Slot 1-2",
+                    type: "practical",
+                    batches: {
+                        "A1": { subject: "R&A", faculty: "Snehal Jagtap", room: "A102" },
+                        "A2": { subject: "CN Lab", faculty: "Sangeetha Navale", room: "A104" },
+                        "A3": { subject: "AI Lab", faculty: "Pradnya Kothawade", room: "A103" },
+                        "B1": { subject: "CN Lab", faculty: "Kalyani Zore", room: "A105" },
+                        "B2": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "B3": { subject: "R&A", faculty: "Sangeetha Navale", room: "A104" },
+                        "C1": { subject: "R&A", faculty: "Surekha Dhumal", room: "A101B" },
+                        "C2": { subject: "AI Lab", faculty: "Jagruti Zope", room: "A106A" },
+                        "C3": { subject: "CN Lab", faculty: "Mahesh Swami", room: "A106B" }
+                    }
+                },
+                { time: "Slot 3", type: "theory", subject: "Open Elective", faculty: "-", room: "E203" },
+                { time: "Slot 4", type: "theory", subject: "Artificial Intelligence", faculty: "Jagruti Zope (JZ)", room: "E203" },
+                { time: "Slot 5", type: "theory", subject: "Elective I (Cloud Computing)", faculty: "Surekha Dhumal (SD)", room: "E203" },
+                { time: "Slot 6", type: "theory", subject: "Technical Seminar", faculty: "-", room: "E203" }
+            ],
+            "5": [
+                {
+                    time: "Slot 1-2",
+                    type: "practical",
+                    batches: {
+                        "A1": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "A2": { subject: "AI Lab", faculty: "Pradnya Kothawade", room: "A103" },
+                        "A3": { subject: "CN Lab", faculty: "Ashvini Kheole", room: "A102" },
+                        "B1": { subject: "CC Lab", faculty: "Surekha Dhumal", room: "A101A" },
+                        "B2": { subject: "R&A", faculty: "Sangeetha Navale", room: "A104" },
+                        "B3": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "C1": { subject: "CN Lab", faculty: "Snehal Chaudhri", room: "A204" },
+                        "C2": { subject: "CC Lab", faculty: "Surekha Dhumal", room: "A101B" },
+                        "C3": { subject: "Self Study", faculty: "-", room: "Library" }
+                    }
+                },
+                { time: "Slot 3", type: "theory", subject: "Artificial Intelligence", faculty: "Jagruti Zope (JZ)", room: "E203" },
+                { time: "Slot 4", type: "theory", subject: "Elective I (Cloud Computing)", faculty: "Surekha Dhumal (SD)", room: "E203" },
+                {
+                    time: "Slot 5-6",
+                    type: "practical",
+                    batches: {
+                        "A1": { subject: "CN Lab", faculty: "Sangeetha Navale", room: "A104" },
+                        "A2": { subject: "Self Study", faculty: "-", room: "Library" },
+                        "A3": { subject: "CN Lab", faculty: "Ashvini Kheole", room: "A102" },
+                        "B1": { subject: "CN Lab", faculty: "Kalyani Zore", room: "A105" },
+                        "B2": { subject: "CN Lab", faculty: "Snehal Chaudhri", room: "A204" },
+                        "B3": { subject: "CC Lab", faculty: "Rahul Korke", room: "A101B" },
+                        "C1": { subject: "R&A", faculty: "Surekha Dhumal", room: "A101A" },
+                        "C2": { subject: "R&A", faculty: "Surekha Dhumal", room: "A101A" },
+                        "C3": { subject: "CN Lab", faculty: "Mahesh Swami", room: "A103" }
+                    }
+                }
+            ]
+        };
+const TE2_SCHEDULE = {
+            1: {
+                name: "Monday",
+                slots: {
+                    4: { type: "theory", code: "CNS", name: "Computer Network Security", faculty: "Sangeetha Navale (SN)", room: "E204" },
+                    5: { type: "theory", code: "AI", name: "Artificial Intelligence", faculty: "Jagruti Zope (JZ)", room: "E204" },
+                    6: { type: "theory", code: "EL-I", name: "Elective I (Cloud Computing)", faculty: "Surekha Dhumal (SD)", room: "E204" }
+                }
+            },
+            2: {
+                name: "Tuesday",
+                slots: {
+                    3: { type: "theory", code: "TOC", name: "Theory of Computation", faculty: "Pradnya Kothawade (PK)", room: "E204" },
+                    4: { type: "theory", code: "AI", name: "Artificial Intelligence", faculty: "Jagruti Zope (JZ)", room: "E204" },
+                    5: { type: "theory", code: "EL-I", name: "Elective I (Cloud Computing)", faculty: "Surekha Dhumal (SD)", room: "E204" }
+                }
+            },
+            3: {
+                name: "Wednesday",
+                slots: {
+                    3: { type: "theory", code: "AI", name: "Artificial Intelligence", faculty: "Jagruti Zope (JZ)", room: "E204" },
+                    4: { type: "theory", code: "EL-I", name: "Elective I (Cloud Computing)", faculty: "Surekha Dhumal (SD)", room: "E204" }
+                }
+            },
+            4: {
+                name: "Thursday",
+                slots: {
+                    4: { type: "theory", code: "TOC", name: "Theory of Computation", faculty: "Pradnya Kothawade (PK)", room: "E204" },
+                    5: { type: "theory", code: "CNS", name: "Computer Network Security", faculty: "Sangeetha Navale (SN)", room: "E204" }
+                }
+            },
+            5: {
+                name: "Friday",
+                slots: {
+                    3: { type: "theory", code: "TOC", name: "Theory of Computation", faculty: "Pradnya Kothawade (PK)", room: "E204" },
+                    4: { type: "theory", code: "CN", name: "Computer Networks", faculty: "Sangeetha Navale (SN)", room: "E204" }
+                }
+            }
+        };
+const BE_SCHEDULE = {
+            "1": [
+                { type: "theory", time: "Slot 1", subject: "DAA - Design & Analysis of Algorithms", teacher: "Ratnaraj Jambi (RJ)", room: "E204" },
+                { type: "theory", time: "Slot 2", subject: "BCT - Blockchain Technology", teacher: "Shreya Nehe (SHN)", room: "E204" },
+                { type: "practical", time: "Slots 3-4", batches: {
+                    "A1": { subject: "ML & DAA Lab", teacher: "Neelam Jadhav", room: "A106A" },
+                    "A2": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "A3": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "B1": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "B2": { subject: "LPIV", teacher: "Rahul Korke", room: "A101A" },
+                    "B3": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "C1": { subject: "BCT Lab", teacher: "Shreya Nehe", room: "A101B" },
+                    "C2": { subject: "ML Lab", teacher: "Neelam Jadhav", room: "A106B" }
+                }},
+                { type: "theory", time: "Slot 5", subject: "PS-1 - Project Stage 1", teacher: "-", room: "E204" }
+            ],
+            "2": [
+                { type: "theory", time: "Slot 1", subject: "DAA - Design & Analysis of Algorithms", teacher: "Ratnaraj Jambi (RJ)", room: "E204" },
+                { type: "theory", time: "Slot 2", subject: "EL-IV-STQA - Software Testing & QA", teacher: "Snehal Jagtap (SJ)", room: "E204" },
+                { type: "practical", time: "Slots 3-4", batches: {
+                    "A1": { subject: "BCT Lab", teacher: "Shreya Nehe", room: "A101B" },
+                    "A2": { subject: "ML & DAA Lab", teacher: "Neelam Jadhav", room: "A106B" },
+                    "A3": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "B1": { subject: "LPIV", teacher: "Snehal Jagtap", room: "A102" },
+                    "B2": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "B3": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "C1": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "C2": { subject: "BCT Lab", teacher: "Shreya Nehe", room: "A101A" }
+                }},
+                { type: "theory", time: "Slot 5", subject: "ML - Machine Learning", teacher: "Neelam Jadhav (NJ)", room: "E204" },
+                { type: "theory", time: "Slot 6", subject: "Self Study", teacher: "-", room: "Library" }
+            ],
+            "3": [
+                { type: "theory", time: "Slot 1", subject: "DAA - Design & Analysis of Algorithms", teacher: "Ratnaraj Jambi (RJ)", room: "E204" },
+                { type: "theory", time: "Slot 2", subject: "ML - Machine Learning", teacher: "Neelam Jadhav (NJ)", room: "E204" },
+                { type: "theory", time: "Slot 3", subject: "EL-IV-STQA - Software Testing & QA", teacher: "Snehal Jagtap (SJ)", room: "E204" },
+                { type: "theory", time: "Slot 4", subject: "EL-III - Elective III (CSDF)", teacher: "Rahul Korke (RK)", room: "E204" },
+                { type: "practical", time: "Slots 5-6", batches: {
+                    "A1": { subject: "LPIV", teacher: "Snehal Jagtap", room: "A102" },
+                    "A2": { subject: "BCT Lab", teacher: "Shreya Nehe", room: "A101B" },
+                    "A3": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "B1": { subject: "ML Lab", teacher: "Neelam Jadhav", room: "A106B" },
+                    "B2": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "B3": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "C1": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "C2": { subject: "LPIV", teacher: "Rahul Korke", room: "A101A" }
+                }}
+            ],
+            "4": [
+                { type: "theory", time: "Slot 1", subject: "BCT - Blockchain Technology", teacher: "Shreya Nehe (SHN)", room: "E204" },
+                { type: "theory", time: "Slot 2", subject: "EL-III - Elective III (CSDF)", teacher: "Rahul Korke (RK)", room: "E204" },
+                { type: "theory", time: "Slot 3", subject: "PS-1 - Project Stage 1", teacher: "-", room: "E204" },
+                { type: "practical", time: "Slots 5-6", batches: {
+                    "A1": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "A2": { subject: "LPIV", teacher: "Snehal Jagtap", room: "A102" },
+                    "A3": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "B1": { subject: "BCT Lab", teacher: "Shreya Nehe", room: "A101B" },
+                    "B2": { subject: "ML Lab", teacher: "Neelam Jadhav", room: "A106B" },
+                    "B3": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "C1": { subject: "LPIV", teacher: "Rahul Korke", room: "A101A" },
+                    "C2": { subject: "Self Study", teacher: "-", room: "Library" }
+                }}
+            ],
+            "5": [
+                { type: "theory", time: "Slot 1", subject: "EL-III - Elective III (CSDF)", teacher: "Rahul Korke (RK)", room: "E204" },
+                { type: "theory", time: "Slot 2", subject: "ML - Machine Learning", teacher: "Neelam Jadhav (NJ)", room: "E204" },
+                { type: "theory", time: "Slot 3", subject: "BCT - Blockchain Technology", teacher: "Shreya Nehe (SHN)", room: "E204" },
+                { type: "theory", time: "Slot 4", subject: "EL-IV-STQA - Software Testing & QA", teacher: "Snehal Jagtap (SJ)", room: "E204" },
+                { type: "practical", time: "Slots 5-6", batches: {
+                    "A1": { subject: "LPIV", teacher: "Snehal Jagtap", room: "A102" },
+                    "A2": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "A3": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "B1": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "B2": { subject: "BCT Lab", teacher: "Shreya Nehe", room: "A101B" },
+                    "B3": { subject: "Self Study", teacher: "-", room: "Library" },
+                    "C1": { subject: "ML Lab", teacher: "Neelam Jadhav", room: "A106B" },
+                    "C2": { subject: "Self Study", teacher: "-", room: "Library" }
+                }}
+            ]
+        };
+
+// Navigation
+let currentClass = null;
+
+function showTimetable(className) {
+  document.getElementById('landing').style.display = 'none';
+  document.querySelectorAll('.timetable-view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + className).classList.add('active');
+  currentClass = className;
+  
+  // Initialize the view
+  const batches = (className === 'SE2' || className === 'TE2') ? [] : 
+                  (className === 'BE') ? ['A1','A2','B1','B2','C1','C2'] : 
+                  ['A1','A2','A3','B1','B2','B3','C1','C2','C3'];
+  
+  const schedule = window[className + '_SCHEDULE'];
+  initClassView(className, schedule, batches);
+}
+
+function showLanding() {
+  document.querySelectorAll('.timetable-view').forEach(v => v.classList.remove('active'));
+  document.getElementById('landing').style.display = 'flex';
+  currentClass = null;
+}
+
+// Engine Code
+const SLOTS = [
+  { id: 1,  time: "09:00 - 10:00", startMin: 540,  endMin: 600  },
+  { id: 2,  time: "10:00 - 11:00", startMin: 600,  endMin: 660  },
+  { id: "b1", isBreak: true, label: "Short Break", time: "11:00 - 11:15", startMin: 660, endMin: 675 },
+  { id: 3,  time: "11:15 - 12:15", startMin: 675, endMin: 735 },
+  { id: 4,  time: "12:15 - 13:15", startMin: 735, endMin: 795 },
+  { id: "b2", isBreak: true, label: "Lunch Break", time: "13:15 - 13:45", startMin: 795, endMin: 825 },
+  { id: 5,  time: "13:45 - 14:45", startMin: 825, endMin: 885 },
+  { id: 6,  time: "14:45 - 15:45", startMin: 885, endMin: 945 }
+];
+
+const ALL_BATCHES = ["A1","A2","A3","B1","B2","B3","C1","C2","C3"];
+let selectedDay, currentBatch = "ALL";
+
+function nowMin() { const d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
+
+function initPage(SCHEDULE, defaultBatches) {
+  const batches = defaultBatches || ALL_BATCHES;
+  const today = new Date().getDay();
+  selectedDay = (today >= 1 && today <= 5) ? today : 1;
+
+  document.querySelectorAll('.day-btn').forEach(btn => {
+    const d = parseInt(btn.dataset.day);
+    if (d === today) btn.innerHTML += '<span class="today-dot"></span>';
+    btn.classList.toggle('active', d === selectedDay);
+    btn.addEventListener('click', () => {
+      selectedDay = d;
+      document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render(SCHEDULE, batches);
+    });
+  });
+
+  document.querySelectorAll('.batch-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentBatch = btn.dataset.batch;
+      document.querySelectorAll('.batch-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render(SCHEDULE, batches);
+    });
+  });
+
+  render(SCHEDULE, batches);
+  setInterval(() => render(SCHEDULE, batches), 30000);
+}
+
+function render(SCHEDULE, batches) {
+  const c = document.getElementById('timeline');
+  const dayData = SCHEDULE[selectedDay];
+  
+  if (!dayData || Object.keys(dayData).length === 0) {
+    c.innerHTML = '<div class="empty-day"><p>No classes scheduled</p></div>';
+    return;
+  }
+  
+  const isToday = selectedDay === new Date().getDay();
+  const now = nowMin();
+  let html = '';
+  let skip = {};
+
+  SLOTS.forEach(slot => {
+    if (slot.isBreak) {
+      html += `<div class="break-card"><span class="break-label">${slot.label}</span><span class="break-time">${slot.time}</span></div>`;
+      return;
+    }
+    if (skip[slot.id]) return;
+
+    const combined12 = ((slot.id === 1 || slot.id === 2) && dayData["1-2"]);
+    const combined34 = ((slot.id === 3 || slot.id === 4) && dayData["3-4"]);
+    const combined56 = ((slot.id === 5 || slot.id === 6) && dayData["5-6"]);
+    
+    if (slot.id === 2 && dayData["1-2"]) { skip[2]=true; return; }
+    if (slot.id === 4 && dayData["3-4"]) { skip[4]=true; return; }
+    if (slot.id === 6 && dayData["5-6"]) { skip[6]=true; return; }
+
+    let entry, sMin, eMin, timeLabel;
+    
+    if (combined12 && slot.id === 1) {
+      entry = dayData["1-2"]; sMin = 540; eMin = 660; timeLabel = "09:00 - 11:00"; skip[2]=true;
+    } else if (combined34 && slot.id === 3) {
+      entry = dayData["3-4"]; sMin = 675; eMin = 795; timeLabel = "11:15 - 13:15"; skip[4]=true;
+    } else if (combined56 && slot.id === 5) {
+      entry = dayData["5-6"]; sMin = 825; eMin = 945; timeLabel = "13:45 - 15:45"; skip[6]=true;
+    } else {
+      entry = dayData[slot.id];
+      if (!entry) return;
+      sMin = slot.startMin; eMin = slot.endMin; timeLabel = slot.time;
+    }
+
+    const live = isToday && now >= sMin && now < eMin;
+    const next = isToday && now < sMin && (sMin - now) <= 45;
+
+    if (entry.type === "practical") {
+      html += renderPractical(entry, timeLabel, live, next, batches);
+    } else {
+      html += renderTheory(entry, timeLabel, live, next);
+    }
+  });
+
+  c.innerHTML = html;
+}
+
+function statusHTML(live, next) {
+  if (live) return '<span class="status-tag live">In Progress</span>';
+  if (next) return '<span class="status-tag next">Up Next</span>';
+  return '';
+}
+
+function renderTheory(entry, timeLabel, live, next) {
+  const cls = live ? 'lecture-card live' : next ? 'lecture-card next' : 'lecture-card';
+  return `
+    <div class="${cls}">
+      <div class="card-head">
+        <span class="time-tag">${timeLabel}</span>
+        ${statusHTML(live, next)}
+      </div>
+      <div class="card-subject">${entry.code}</div>
+      <div class="card-fullname">${entry.name}</div>
+      <div class="card-meta">
+        <span class="card-prof">${entry.prof}</span>
+        <span class="card-room">Room ${entry.room}</span>
+      </div>
+    </div>`;
+}
+
+function renderPractical(entry, timeLabel, live, next, batches) {
+  const cls = live ? 'lecture-card live' : next ? 'lecture-card next' : 'lecture-card';
+
+  if (currentBatch !== "ALL") {
+    const a = entry.batches[currentBatch] || { code:"Self-Study", prof:"-", room:"Library" };
+    return `
+      <div class="${cls}">
+        <div class="card-head">
+          <span class="time-tag">${timeLabel}</span>
+          ${statusHTML(live, next)}
+        </div>
+        <div class="card-subject">${a.code}</div>
+        <div class="card-fullname">Batch ${currentBatch}</div>
+        <div class="card-meta">
+          <span class="card-prof">${a.prof}</span>
+          <span class="card-room">${a.room}</span>
+        </div>
+      </div>`;
+  }
+
+  let cells = '';
+  batches.forEach(b => {
+    const a = entry.batches[b] || { code:"Self-Study", prof:"-", room:"Library" };
+    cells += `<div class="matrix-cell"><div class="cell-batch">Batch ${b}</div><div class="cell-subject">${a.code}</div><div class="cell-room">${a.room}</div><div class="cell-prof">${a.prof}</div></div>`;
+  });
+
+  return `
+    <div class="${cls}">
+      <div class="card-head">
+        <span class="time-tag">${timeLabel}</span>
+        ${statusHTML(live, next)}
+      </div>
+      <div class="practical-header"><span class="practical-title">Practical Sessions</span></div>
+      <div class="batch-matrix">${cells}</div>
+    </div>`;
+}
+
+
+// Modified initPage for multi-view support
+function initClassView(className, SCHEDULE, defaultBatches) {
+  const container = document.getElementById('view-' + className);
+  const timelineId = 'timeline-' + className;
+  const batches = defaultBatches || ['A1','A2','A3','B1','B2','B3','C1','C2','C3'];
+  const today = new Date().getDay();
+  let selectedDay = (today >= 1 && today <= 5) ? today : 1;
+  let currentBatch = "ALL";
+
+  // Day buttons
+  container.querySelectorAll('.day-btn').forEach(btn => {
+    const d = parseInt(btn.dataset.day);
+    if (d === today) btn.innerHTML += '<span class="today-dot"></span>';
+    btn.classList.toggle('active', d === selectedDay);
+    btn.addEventListener('click', () => {
+      selectedDay = d;
+      container.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderView(SCHEDULE, batches, selectedDay, currentBatch, timelineId);
+    });
+  });
+
+  // Batch buttons
+  container.querySelectorAll('.batch-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentBatch = btn.dataset.batch;
+      container.querySelectorAll('.batch-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderView(SCHEDULE, batches, selectedDay, currentBatch, timelineId);
+    });
+  });
+
+  renderView(SCHEDULE, batches, selectedDay, currentBatch, timelineId);
+  setInterval(() => renderView(SCHEDULE, batches, selectedDay, currentBatch, timelineId), 30000);
+}
+
+function renderView(SCHEDULE, batches, selectedDay, currentBatch, timelineId) {
+  const c = document.getElementById(timelineId);
+  const dayData = SCHEDULE[selectedDay];
+  
+  if (!dayData || Object.keys(dayData).length === 0) {
+    c.innerHTML = '<div class="empty-day"><p>No classes scheduled</p></div>';
+    return;
+  }
+  
+  const isToday = selectedDay === new Date().getDay();
+  const now = nowMin();
+  let html = '';
+  let skip = {};
+
+  SLOTS.forEach(slot => {
+    if (slot.isBreak) {
+      html += `<div class="break-card"><span class="break-label">${slot.label}</span><span class="break-time">${slot.time}</span></div>`;
+      return;
+    }
+    if (skip[slot.id]) return;
+
+    const combined12 = ((slot.id === 1 || slot.id === 2) && dayData["1-2"]);
+    const combined34 = ((slot.id === 3 || slot.id === 4) && dayData["3-4"]);
+    const combined56 = ((slot.id === 5 || slot.id === 6) && dayData["5-6"]);
+    
+    if (slot.id === 2 && dayData["1-2"]) { skip[2]=true; return; }
+    if (slot.id === 4 && dayData["3-4"]) { skip[4]=true; return; }
+    if (slot.id === 6 && dayData["5-6"]) { skip[6]=true; return; }
+
+    let entry, sMin, eMin, timeLabel;
+    
+    if (combined12 && slot.id === 1) {
+      entry = dayData["1-2"]; sMin = 540; eMin = 660; timeLabel = "09:00 - 11:00"; skip[2]=true;
+    } else if (combined34 && slot.id === 3) {
+      entry = dayData["3-4"]; sMin = 675; eMin = 795; timeLabel = "11:15 - 13:15"; skip[4]=true;
+    } else if (combined56 && slot.id === 5) {
+      entry = dayData["5-6"]; sMin = 825; eMin = 945; timeLabel = "13:45 - 15:45"; skip[6]=true;
+    } else {
+      entry = dayData[slot.id];
+      if (!entry) return;
+      sMin = slot.startMin; eMin = slot.endMin; timeLabel = slot.time;
+    }
+
+    const live = isToday && now >= sMin && now < eMin;
+    const next = isToday && now < sMin && (sMin - now) <= 45;
+
+    if (entry.type === "practical") {
+      html += renderPractical(entry, timeLabel, live, next, batches, currentBatch);
+    } else {
+      html += renderTheory(entry, timeLabel, live, next);
+    }
+  });
+
+  c.innerHTML = html;
+}
+
+function renderPractical(entry, timeLabel, live, next, batches, currentBatch) {
+  const cls = live ? 'lecture-card live' : next ? 'lecture-card next' : 'lecture-card';
+
+  if (currentBatch !== "ALL") {
+    const a = entry.batches[currentBatch] || { code:"Self-Study", prof:"-", room:"Library" };
+    return `
+      <div class="${cls}">
+        <div class="card-head">
+          <span class="time-tag">${timeLabel}</span>
+          ${statusHTML(live, next)}
+        </div>
+        <div class="card-subject">${a.code}</div>
+        <div class="card-fullname">Batch ${currentBatch}</div>
+        <div class="card-meta">
+          <span class="card-prof">${a.prof || a.faculty}</span>
+          <span class="card-room">${a.room}</span>
+        </div>
+      </div>`;
+  }
+
+  let cells = '';
+  batches.forEach(b => {
+    const a = entry.batches[b] || { code:"Self-Study", prof:"-", room:"Library", faculty:"-" };
+    const profName = a.prof || a.faculty || "-";
+    cells += `<div class="matrix-cell"><div class="cell-batch">Batch ${b}</div><div class="cell-subject">${a.code}</div><div class="cell-room">${a.room}</div><div class="cell-prof">${profName}</div></div>`;
+  });
+
+  return `
+    <div class="${cls}">
+      <div class="card-head">
+        <span class="time-tag">${timeLabel}</span>
+        ${statusHTML(live, next)}
+      </div>
+      <div class="practical-header"><span class="practical-title">Practical Sessions</span></div>
+      <div class="batch-matrix">${cells}</div>
+    </div>`;
+}
+  </script>
 </body>
 </html>
