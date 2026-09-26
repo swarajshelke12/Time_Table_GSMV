@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TE1 Timetable — Computer Engineering</title>
-  <meta name="description" content="TE1 (Third Year Engineering, Division 1) class timetable for Computer Engineering, Room E203." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📅</text></svg>" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TE1 Timetable</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="topbar">
+        <a href="index.html" class="back-btn">&larr;</a>
+        <div class="topbar-info">
+            <h1>TE1 Timetable</h1>
+            <p>Computer Engineering • Room E203</p>
+        </div>
+    </header>
 
-  <!-- ===== TOP BAR ===== -->
-  <div class="topbar">
-    <a href="index.html" class="back-btn" title="Back to all classes">←</a>
-    <div class="topbar-info">
-      <h1>TE1 Timetable</h1>
-      <p>Computer Engineering • Room E203</p>
-    </div>
-  </div>
-
-  <!-- ===== BATCH STRIP ===== -->
-  <div class="batch-strip">
+    <div class="batch-strip">
     <button class="batch-btn active" data-batch="ALL">ALL</button>
     <button class="batch-btn" data-batch="A1">A1</button>
     <button class="batch-btn" data-batch="A2">A2</button>
@@ -33,27 +28,19 @@
     <button class="batch-btn" data-batch="C3">C3</button>
   </div>
 
-  <!-- ===== DAY STRIP ===== -->
-  <div class="day-strip">
-    <button class="day-btn" data-day="1">Mon</button>
-    <button class="day-btn" data-day="2">Tue</button>
-    <button class="day-btn" data-day="3">Wed</button>
-    <button class="day-btn" data-day="4">Thu</button>
-    <button class="day-btn" data-day="5">Fri</button>
-  </div>
-
-  <!-- ===== TIMELINE (rendered by engine.js) ===== -->
-  <div class="timeline" id="timeline"></div>
-
-  <!-- ===== FOOTER ===== -->
-  <div class="page-footer">
-    <div>Made with ❤️ by Swaraj Shelke</div>
-    <div class="footer-social">
-      <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
+    <div class="day-strip">
+        <button class="day-btn" data-day="1">Mon</button>
+        <button class="day-btn" data-day="2">Tue</button>
+        <button class="day-btn" data-day="3">Wed</button>
+        <button class="day-btn" data-day="4">Thu</button>
+        <button class="day-btn" data-day="5">Fri</button>
     </div>
-  </div>
+
+    <main class="timeline" id="timeline"></main>
+
+    <footer class="footer">
+        <p>Generated Schedule</p>
+    </footer>
 
   <!-- ===== SCHEDULE DATA ===== -->
   <script>

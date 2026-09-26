@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE1 Timetable</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <a href="index.html" class="back-btn">&larr;</a>
+        <div class="topbar-info">
+            <h1>SE1 Timetable</h1>
+            <p>Computer Engineering • Room E201</p>
+        </div>
+    </header>
+
+    <div class="batch-strip">
+        <button class="batch-btn active" data-batch="ALL">ALL</button>
+        <button class="batch-btn" data-batch="A1">A1</button>
+        <button class="batch-btn" data-batch="A2">A2</button>
+        <button class="batch-btn" data-batch="A3">A3</button>
+        <button class="batch-btn" data-batch="B1">B1</button>
+        <button class="batch-btn" data-batch="B2">B2</button>
+        <button class="batch-btn" data-batch="B3">B3</button>
+        <button class="batch-btn" data-batch="C1">C1</button>
+        <button class="batch-btn" data-batch="C2">C2</button>
+        <button class="batch-btn" data-batch="C3">C3</button>
+    </div>
+
+    <div class="day-strip">
+        <button class="day-btn" data-day="1">Mon</button>
+        <button class="day-btn" data-day="2">Tue</button>
+        <button class="day-btn" data-day="3">Wed</button>
+        <button class="day-btn" data-day="4">Thu</button>
+        <button class="day-btn" data-day="5">Fri</button>
+    </div>
+
+    <main class="timeline" id="timeline"></main>
+
+    <footer class="page-footer">
+  Maintained by Swaraj Shelke
+  <div class="footer-social">
+    <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+    <script>
+        const SE1_SCHEDULE = {
+            1: { // Monday
+                1: { type: 'theory', code: 'OS', name: 'Operating Systems', faculty: 'Mahesh Swami (MS)', room: 'E201' },
+                2: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', faculty: 'Kalyani Zore (KZ)', room: 'E201' },
+                3: { type: 'practical', batches: {
+                    'A1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101' },
+                    'A2': { code: 'CEP', name: 'CEP', faculty: 'Shreya Nehe', room: 'A101B' },
+                    'A3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B1': { code: 'CEP', name: 'CEP', faculty: 'Snehal Chaudhri', room: 'A204' },
+                    'B2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'B3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'C1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C2': { code: 'CEP', name: 'CEP', faculty: 'Jagruti Zope', room: 'A105' },
+                    'C3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' }
+                }},
+                4: { type: 'practical', batches: {
+                    'A1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101' },
+                    'A2': { code: 'CEP', name: 'CEP', faculty: 'Shreya Nehe', room: 'A101B' },
+                    'A3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B1': { code: 'CEP', name: 'CEP', faculty: 'Snehal Chaudhri', room: 'A204' },
+                    'B2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'B3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'C1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C2': { code: 'CEP', name: 'CEP', faculty: 'Jagruti Zope', room: 'A105' },
+                    'C3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' }
+                }},
+                5: { type: 'practical', batches: {
+                    'A1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'A2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'A3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'C1': { code: 'CEP', name: 'CEP', faculty: 'Neelam Jadhav', room: 'A104' },
+                    'C2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' }
+                }},
+                6: { type: 'practical', batches: {
+                    'A1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'A2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'A3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'C1': { code: 'CEP', name: 'CEP', faculty: 'Neelam Jadhav', room: 'A104' },
+                    'C2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' }
+                }}
+            },
+            2: { // Tuesday
+                1: { type: 'theory', code: 'DS', name: 'Data Structures', faculty: 'Nilima Patil (NP)', room: 'E201' },
+                2: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', faculty: 'Kalyani Zore (KZ)', room: 'E201' },
+                3: { type: 'theory', code: 'DELD', name: 'Digital Electronics & Logic Design', faculty: 'Snehal Chaudhri (SC)', room: 'E201' },
+                4: { type: 'theory', code: 'OS', name: 'Operating Systems', faculty: 'Mahesh Swami (MS)', room: 'E201' },
+                5: { type: 'practical', batches: {
+                    'A1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'A2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'A3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101B' },
+                    'B1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C2': { code: 'CEP', name: 'CEP', faculty: 'Jagruti Zope', room: 'A103' },
+                    'C3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' }
+                }},
+                6: { type: 'practical', batches: {
+                    'A1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'A2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'A3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101B' },
+                    'B1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'C2': { code: 'CEP', name: 'CEP', faculty: 'Jagruti Zope', room: 'A103' },
+                    'C3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' }
+                }}
+            },
+            3: { // Wednesday
+                1: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', faculty: 'Kalyani Zore (KZ)', room: 'E201' },
+                2: { type: 'theory', code: 'DS', name: 'Data Structures', faculty: 'Nilima Patil (NP)', room: 'E201' },
+                3: { type: 'practical', batches: {
+                    'A1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101B' },
+                    'A3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'B1': { code: 'CEP', name: 'CEP', faculty: 'Snehal Chaudhri', room: 'A204' },
+                    'B2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106B' },
+                    'B3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'C1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106A' }
+                }},
+                4: { type: 'practical', batches: {
+                    'A1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101B' },
+                    'A3': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'B1': { code: 'CEP', name: 'CEP', faculty: 'Snehal Chaudhri', room: 'A204' },
+                    'B2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106B' },
+                    'B3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'C1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C2': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106A' }
+                }},
+                5: { type: 'theory', code: 'DM', name: 'Discrete Mathematics', faculty: 'Dr. Maya Jadhav (Dr. MJ)', room: 'E201' },
+                6: { type: 'theory', code: 'ED', name: 'Engineering Drawing', faculty: 'Nilam Naidu (NN)', room: 'E201' }
+            },
+            4: { // Thursday
+                1: { type: 'theory', code: 'DELD', name: 'Digital Electronics & Logic Design', faculty: 'Snehal Chaudhri (SC)', room: 'E201' },
+                2: { type: 'theory', code: 'DS', name: 'Data Structures', faculty: 'Nilima Patil (NP)', room: 'E201' },
+                3: { type: 'practical', batches: {
+                    'A1': { code: 'CEP', name: 'CEP', faculty: 'Smita Sapkal', room: 'A106A' },
+                    'A2': { code: 'CEP', name: 'CEP', faculty: 'Shreya Nehe', room: 'A101B' },
+                    'A3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'B1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'B2': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'B3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106B' },
+                    'C1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' }
+                }},
+                4: { type: 'practical', batches: {
+                    'A1': { code: 'CEP', name: 'CEP', faculty: 'Smita Sapkal', room: 'A106A' },
+                    'A2': { code: 'CEP', name: 'CEP', faculty: 'Shreya Nehe', room: 'A101B' },
+                    'A3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Mansi Singh', room: 'A101A' },
+                    'B1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Kalyani Zore', room: 'A105' },
+                    'B2': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'B3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106B' },
+                    'C1': { code: 'OOPCG Lab', name: 'OOP & Computer Graphics Lab', faculty: 'Ashvini Kheole', room: 'A102' },
+                    'C2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C3': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106B' }
+                }},
+                5: { type: 'practical', batches: {
+                    'A1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A3': { code: 'CEP', name: 'CEP', faculty: 'Mansi Singh', room: 'A101A' },
+                    'B1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106A' },
+                    'C3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' }
+                }},
+                6: { type: 'practical', batches: {
+                    'A1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A3': { code: 'CEP', name: 'CEP', faculty: 'Mansi Singh', room: 'A101A' },
+                    'B1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'B3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C1': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C2': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Smita Sapkal', room: 'A106A' },
+                    'C3': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' }
+                }}
+            },
+            5: { // Friday
+                1: { type: 'theory', code: 'OS', name: 'Operating Systems', faculty: 'Mahesh Swami (MS)', room: 'E201' },
+                2: { type: 'theory', code: 'UHV', name: 'Universal Human Values', faculty: 'Snehal Jagtap (SJ)', room: 'E201' },
+                3: { type: 'practical', batches: {
+                    'A1': { code: 'CEP', name: 'CEP', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'A2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A3': { code: 'CEP', name: 'CEP', faculty: 'Nilima Patil', room: 'A105' },
+                    'B1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B2': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'B3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C1': { code: 'CEP', name: 'CEP', faculty: 'Neelam Jadhav', room: 'A103' },
+                    'C2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' }
+                }},
+                4: { type: 'practical', batches: {
+                    'A1': { code: 'CEP', name: 'CEP', faculty: 'Smita Sapkal', room: 'A106B' },
+                    'A2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'A3': { code: 'CEP', name: 'CEP', faculty: 'Nilima Patil', room: 'A105' },
+                    'B1': { code: 'DS Lab', name: 'Data Structures Lab', faculty: 'Alka Kumbhar', room: 'A106A' },
+                    'B2': { code: 'CEP', name: 'CEP', faculty: 'Mahesh Swami', room: 'A104' },
+                    'B3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C1': { code: 'CEP', name: 'CEP', faculty: 'Neelam Jadhav', room: 'A103' },
+                    'C2': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' },
+                    'C3': { code: 'Self Study', name: 'Self Study', faculty: '-', room: 'Library' }
+                }},
+                5: { type: 'theory', code: 'DM', name: 'Discrete Mathematics', faculty: 'Dr. Maya Jadhav (Dr. MJ)', room: 'E201' },
+                6: { type: 'theory', code: 'ED', name: 'Engineering Drawing', faculty: 'Nilam Naidu (NN)', room: 'E201' }
+            }
+        };
+    </script>
+    <script src="engine.js"></script>
+    <script>initPage(SE1_SCHEDULE);</script>
+</body>
+</html>
