@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TE1 Timetable — Computer Engineering</title>
+  <meta name="description" content="TE1 (Third Year Engineering, Division 1) class timetable for Computer Engineering, Room E203." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📅</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <div class="topbar">
+    <a href="index.html" class="back-btn" title="Back to all classes">←</a>
+    <div class="topbar-info">
+      <h1>TE1 Timetable</h1>
+      <p>Computer Engineering • Room E203</p>
+    </div>
+  </div>
+
+  <!-- ===== BATCH STRIP ===== -->
+  <div class="batch-strip">
+    <button class="batch-btn active" data-batch="ALL">ALL</button>
+    <button class="batch-btn" data-batch="A1">A1</button>
+    <button class="batch-btn" data-batch="A2">A2</button>
+    <button class="batch-btn" data-batch="A3">A3</button>
+    <button class="batch-btn" data-batch="B1">B1</button>
+    <button class="batch-btn" data-batch="B2">B2</button>
+    <button class="batch-btn" data-batch="B3">B3</button>
+    <button class="batch-btn" data-batch="C1">C1</button>
+    <button class="batch-btn" data-batch="C2">C2</button>
+    <button class="batch-btn" data-batch="C3">C3</button>
+  </div>
+
+  <!-- ===== DAY STRIP ===== -->
+  <div class="day-strip">
+    <button class="day-btn" data-day="1">Mon</button>
+    <button class="day-btn" data-day="2">Tue</button>
+    <button class="day-btn" data-day="3">Wed</button>
+    <button class="day-btn" data-day="4">Thu</button>
+    <button class="day-btn" data-day="5">Fri</button>
+  </div>
+
+  <!-- ===== TIMELINE (rendered by engine.js) ===== -->
+  <div class="timeline" id="timeline"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="page-footer">
+    <div>Made with ❤️ by Swaraj Shelke</div>
+    <div class="footer-social">
+      <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+
+  <!-- ===== SCHEDULE DATA ===== -->
+  <script>
+  const TE1_SCHEDULE = {
+    // ================= MONDAY =================
+    1: {
+      "1-2": {
+        type: "practical",
+        batches: {
+          A1: { code: "AI Lab",   prof: "Pradnya Kothawade", room: "A103"  },
+          A2: { code: "CN Lab",   prof: "Sangeetha Navale",  room: "A104"  },
+          A3: { code: "CC Lab",   prof: "Surekha Dhumal",    room: "A101A" },
+          B1: { code: "R&A",      prof: "Snehal Jagtap",     room: "A102"  },
+          B2: { code: "Library",  prof: "Self-Study",        room: "Library" },
+          B3: { code: "AI Lab",   prof: "Jagruti Zope",      room: "A106A" },
+          C1: { code: "CN Lab",   prof: "Snehal Chaudhri",  room: "A204"  },
+          C2: { code: "CC Lab",   prof: "Rahul Korke",       room: "A101B" },
+          C3: { code: "R&A",      prof: "Ashvini Kheole",    room: "A106B" }
+        }
+      },
+      3: { type: "theory", code: "OE",   name: "Open Elective",                prof: "-",                    room: "E203" },
+      4: { type: "theory", code: "EL-I", name: "Elective I (Cloud Computing)", prof: "Surekha Dhumal (SD)",  room: "E203" },
+      5: { type: "theory", code: "TOC",  name: "Theory of Computation",        prof: "Pradnya Kothawade (PK)", room: "E203" },
+      6: { type: "theory", code: "CNS",  name: "Computer Network Security",    prof: "Sangeetha Navale (SN)",  room: "E203" }
+    },
+
+    // ================= TUESDAY =================
+    2: {
+      "1-2": {
+        type: "practical",
+        batches: {
+          A1: { code: "CN Lab",  prof: "Sangeetha Navale",  room: "A104" },
+          A2: { code: "CC Lab",  prof: "Surekha Dhumal",    room: "A101A" },
+          A3: { code: "R&A",     prof: "Shreya Nehe",       room: "A102" },
+          B1: { code: "Library", prof: "Self-Study",        room: "Library" },
+          B2: { code: "AI Lab",  prof: "Jagruti Zope",      room: "A103" },
+          B3: { code: "CN Lab",  prof: "Snehal Chaudhri",  room: "A204" },
+          C1: { code: "Library", prof: "Self-Study",        room: "Library" },
+          C2: { code: "CN Lab",  prof: "Mahesh Swami",      room: "A105" },
+          C3: { code: "CC Lab",  prof: "Rahul Korke",       room: "A101B" }
+        }
+      },
+      3: { type: "theory", code: "AI",                name: "Artificial Intelligence",     prof: "Jagruti Zope (JZ)",       room: "E203" },
+      4: { type: "theory", code: "TOC",               name: "Theory of Computation",       prof: "Pradnya Kothawade (PK)", room: "E203" },
+      5: { type: "theory", code: "CNS",               name: "Computer Network Security",   prof: "Sangeetha Navale (SN)",   room: "E203" },
+      6: { type: "theory", code: "Technical Seminar", name: "Technical Seminar",           prof: "-",                     room: "E203" }
+    },
+
+    // ================= WEDNESDAY =================
+    3: {
+      "1-2": {
+        type: "practical",
+        batches: {
+          A1: { code: "Library", prof: "Self-Study",        room: "Library" },
+          A2: { code: "R&A",     prof: "Snehal Jagtap",     room: "A102" },
+          A3: { code: "Library", prof: "Self-Study",        room: "Library" },
+          B1: { code: "AI Lab",  prof: "Pradnya Kothawade", room: "A103" },
+          B2: { code: "CC Lab",  prof: "Surekha Dhumal",    room: "A101A" },
+          B3: { code: "CN Lab",  prof: "Smita Kathar",      room: "A204" },
+          C1: { code: "CC Lab",  prof: "Rahul Korke",       room: "A101B" },
+          C2: { code: "CN Lab",  prof: "Mahesh Swami",      room: "A105" },
+          C3: { code: "AI Lab",  prof: "Jagruti Zope",      room: "A106A" }
+        }
+      },
+      3: { type: "theory", code: "TOC", name: "Theory of Computation",     prof: "Pradnya Kothawade (PK)", room: "E203" },
+      4: { type: "theory", code: "CNS", name: "Computer Network Security", prof: "Sangeetha Navale (SN)",   room: "E203" },
+      "5-6": {
+        type: "practical",
+        batches: {
+          A1: { code: "CC Lab",  prof: "Surekha Dhumal",   room: "A101A" },
+          A2: { code: "Library", prof: "Self-Study",       room: "Library" },
+          A3: { code: "Library", prof: "Self-Study",       room: "Library" },
+          B1: { code: "Library", prof: "Self-Study",       room: "Library" },
+          B2: { code: "CN Lab",  prof: "Snehal Chaudhri", room: "A204" },
+          B3: { code: "Library", prof: "Self-Study",       room: "Library" },
+          C1: { code: "AI Lab",  prof: "Jagruti Zope",     room: "A106A" },
+          C2: { code: "Library", prof: "Self-Study",       room: "Library" },
+          C3: { code: "Library", prof: "Self-Study",       room: "Library" }
+        }
+      }
+    },
+
+    // ================= THURSDAY =================
+    4: {
+      "1-2": {
+        type: "practical",
+        batches: {
+          A1: { code: "R&A",     prof: "Snehal Jagtap",    room: "A102" },
+          A2: { code: "CN Lab",  prof: "Sangeetha Navale", room: "A104" },
+          A3: { code: "AI Lab",  prof: "Pradnya Kothawade", room: "A103" },
+          B1: { code: "CN Lab",  prof: "Kalyani Zore",     room: "A105" },
+          B2: { code: "Library", prof: "Self-Study",       room: "Library" },
+          B3: { code: "R&A",     prof: "Sangeetha Navale", room: "A104" },
+          C1: { code: "R&A",     prof: "Surekha Dhumal",   room: "A101B" },
+          C2: { code: "AI Lab",  prof: "Jagruti Zope",     room: "A106A" },
+          C3: { code: "CN Lab",  prof: "Mahesh Swami",     room: "A106B" }
+        }
+      },
+      3: { type: "theory", code: "OE",                name: "Open Elective",            prof: "-",                    room: "E203" },
+      4: { type: "theory", code: "AI",                name: "Artificial Intelligence", prof: "Jagruti Zope (JZ)",    room: "E203" },
+      5: { type: "theory", code: "EL-I",              name: "Elective I (Cloud Computing)", prof: "Surekha Dhumal (SD)", room: "E203" },
+      6: { type: "theory", code: "Technical Seminar", name: "Technical Seminar",       prof: "-",                    room: "E203" }
+    },
+
+    // ================= FRIDAY =================
+    5: {
+      "1-2": {
+        type: "practical",
+        batches: {
+          A1: { code: "Library", prof: "Self-Study",        room: "Library" },
+          A2: { code: "AI Lab",  prof: "Pradnya Kothawade", room: "A103" },
+          A3: { code: "CN Lab",  prof: "Ashvini Kheole",    room: "A102" },
+          B1: { code: "CC Lab",  prof: "Surekha Dhumal",    room: "A101A" },
+          B2: { code: "R&A",     prof: "Sangeetha Navale", room: "A104" },
+          B3: { code: "Library", prof: "Self-Study",        room: "Library" },
+          C1: { code: "CN Lab",  prof: "Snehal Chaudhri",  room: "A204" },
+          C2: { code: "CC Lab",  prof: "Surekha Dhumal",    room: "A101B" },
+          C3: { code: "Library", prof: "Self-Study",        room: "Library" }
+        }
+      },
+      3: { type: "theory", code: "AI",   name: "Artificial Intelligence",        prof: "Jagruti Zope (JZ)",      room: "E203" },
+      4: { type: "theory", code: "EL-I", name: "Elective I (Cloud Computing)",  prof: "Surekha Dhumal (SD)",   room: "E203" },
+      "5-6": {
+        type: "practical",
+        batches: {
+          A1: { code: "CN Lab",  prof: "Sangeetha Navale",  room: "A104" },
+          A2: { code: "Library", prof: "Self-Study",        room: "Library" },
+          A3: { code: "CN Lab",  prof: "Ashvini Kheole",    room: "A102" },
+          B1: { code: "CN Lab",  prof: "Kalyani Zore",      room: "A105" },
+          B2: { code: "CN Lab",  prof: "Snehal Chaudhri",  room: "A204" },
+          B3: { code: "CC Lab",  prof: "Rahul Korke",       room: "A101B" },
+          C1: { code: "R&A",     prof: "Surekha Dhumal",    room: "A101A" },
+          C2: { code: "R&A",     prof: "Surekha Dhumal",    room: "A101A" },
+          C3: { code: "CN Lab",  prof: "Mahesh Swami",      room: "A103" }
+        }
+      }
+    }
+  };
+  </script>
+  <script src="engine.js"></script>
+  <script>initPage(TE1_SCHEDULE);</script>
+
+</body>
+</html>

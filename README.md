@@ -3,7 +3,6 @@
 A simple, lightning-fast, and mobile-friendly timetable web app designed exclusively for **SE2 Computer Engineering** students.
 
 ---
-
 ## ✨ Features
 
 - **Accurate SE2 Schedule**: Extracted directly from the official timetable with classroom (E202), lab room numbers, and faculty details.

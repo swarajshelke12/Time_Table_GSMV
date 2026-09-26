@@ -1,0 +1,256 @@
+/* Professional Timetable Stylesheet */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+  min-height: 100vh;
+}
+
+/* Top Navigation */
+.topbar {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-btn {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #374151;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.15s;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.back-btn:hover { background: #e5e7eb; color: #111827; }
+
+.topbar-info h1 { font-size: 1rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; }
+.topbar-info p { font-size: 0.75rem; color: #6b7280; }
+
+/* Batch Selection */
+.batch-strip {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px 24px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.batch-strip::-webkit-scrollbar { display: none; }
+
+.batch-btn {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.12s;
+}
+.batch-btn:hover { background: #f3f4f6; border-color: #9ca3af; }
+.batch-btn.active {
+  background: #1f2937;
+  color: #ffffff;
+  border-color: #1f2937;
+}
+
+/* Day Selection */
+.day-strip {
+  display: flex;
+  gap: 6px;
+  padding: 16px 24px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.day-strip::-webkit-scrollbar { display: none; }
+
+.day-btn {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.12s;
+  position: relative;
+}
+.day-btn:hover { border-color: #9ca3af; }
+.day-btn.active {
+  background: #111827;
+  color: #ffffff;
+  border-color: #111827;
+}
+.today-dot {
+  position: absolute;
+  top: 3px; right: 3px;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: #ef4444;
+}
+
+/* Main Timeline */
+.timeline {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Break Card */
+.break-card {
+  background: transparent;
+  border-top: 1px dashed #d1d5db;
+  border-bottom: 1px dashed #d1d5db;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.break-label { font-size: 0.8rem; font-weight: 500; color: #6b7280; text-transform: uppercase; letter-spacing: 0.025em; }
+.break-time { font-size: 0.75rem; color: #9ca3af; font-family: monospace; }
+
+/* Lecture Card */
+.lecture-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-left: 3px solid #9ca3af;
+  border-radius: 6px;
+  padding: 14px;
+}
+.lecture-card.live {
+  border-color: #93c5fd;
+  border-left-color: #2563eb;
+  background: #eff6ff;
+}
+.lecture-card.next {
+  border-color: #fde047;
+  border-left-color: #eab308;
+  background: #fefce8;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+.time-tag {
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: #374151;
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+.status-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.status-tag.live { background: #dbeafe; color: #1e40af; }
+.status-tag.next { background: #fef9c3; color: #78350f; }
+
+.card-subject { font-size: 0.95rem; font-weight: 600; color: #111827; margin-bottom: 2px; }
+.card-fullname { font-size: 0.8rem; color: #6b7280; margin-bottom: 10px; }
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #f3f4f6;
+  font-size: 0.75rem;
+}
+.card-prof { color: #374151; font-weight: 500; }
+.card-room { color: #4b5563; font-family: monospace; }
+
+/* Practical Header */
+.practical-header {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.practical-title { font-size: 0.8rem; font-weight: 600; color: #374151; text-transform: uppercase; letter-spacing: 0.025em; }
+
+/* Batch Matrix */
+.batch-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.matrix-cell {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 8px;
+}
+.cell-batch { font-size: 0.7rem; font-weight: 600; color: #6b7280; margin-bottom: 3px; }
+.cell-subject { font-size: 0.8rem; font-weight: 500; color: #111827; margin-bottom: 2px; }
+.cell-room { font-size: 0.7rem; color: #9ca3af; font-family: monospace; }
+.cell-prof { font-size: 0.7rem; color: #4b5563; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Empty State */
+.empty-day {
+  background: transparent;
+  border: 1px dashed #d1d5db;
+  border-radius: 6px;
+  padding: 40px 20px;
+  text-align: center;
+  color: #6b7280;
+}
+.empty-day p { font-size: 0.9rem; }
+
+/* Footer */
+.page-footer {
+  text-align: center;
+  padding: 24px 24px 32px;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+.page-footer a {
+  color: #9ca3af;
+  text-decoration: none;
+  margin: 0 8px;
+  transition: color 0.12s;
+}
+.page-footer a:hover { color: #4b5563; }
+.footer-social { margin-top: 10px; display: flex; justify-content: center; gap: 12px; }
+
+@media (max-width: 640px) {
+  .topbar { padding: 10px 16px; }
+  .batch-strip { padding: 8px 16px; }
+  .day-strip { padding: 12px 16px 0; }
+  .timeline { padding: 16px; }
+}

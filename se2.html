@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SE2 Timetable</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="back-btn">&larr;</a>
+    <div class="topbar-info">
+      <h1>SE2 Timetable</h1>
+      <p>Computer Engineering • Room E202</p>
+    </div>
+  </header>
+
+  <div class="day-strip">
+    <button class="day-btn" data-day="1">Mon</button>
+    <button class="day-btn" data-day="2">Tue</button>
+    <button class="day-btn" data-day="3">Wed</button>
+    <button class="day-btn" data-day="4">Thu</button>
+    <button class="day-btn" data-day="5">Fri</button>
+  </div>
+
+  <main class="timeline" id="timeline"></main>
+
+  <footer class="page-footer">
+    Maintained by Swaraj Shelke
+    <div class="footer-social">
+      <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    const SE2_SCHEDULE = [
+      { day: 1, slot: 1, type: "theory", code: "DS", name: "Data Structures", professor: "Alka Kumbhar (AAK)", room: "E202" },
+      { day: 1, slot: 2, type: "theory", code: "OS", name: "Operating Systems", professor: "Smita Sapkal (SS)", room: "E202" },
+      
+      { day: 2, slot: 1, type: "theory", code: "OS", name: "Operating Systems", professor: "Smita Sapkal (SS)", room: "E202" },
+      { day: 2, slot: 2, type: "theory", code: "OOPCG", name: "OOP & Computer Graphics", professor: "Ashvini Kheole (APK)", room: "E202" },
+      { day: 2, slot: 3, type: "theory", code: "DS", name: "Data Structures", professor: "Alka Kumbhar (AAK)", room: "E202" },
+      { day: 2, slot: 4, type: "theory", code: "DELD", name: "Digital Electronics & Logic Design", professor: "Snehal Chaudhri (SC)", room: "E202" },
+      
+      { day: 3, slot: 1, type: "theory", code: "OS", name: "Operating Systems", professor: "Smita Sapkal (SS)", room: "E202" },
+      { day: 3, slot: 2, type: "theory", code: "OOPCG", name: "OOP & Computer Graphics", professor: "Ashvini Kheole (APK)", room: "E202" },
+      
+      { day: 4, slot: 1, type: "theory", code: "OOPCG", name: "OOP & Computer Graphics", professor: "Ashvini Kheole (APK)", room: "E202" },
+      { day: 4, slot: 2, type: "theory", code: "DELD", name: "Digital Electronics & Logic Design", professor: "Snehal Chaudhri (SC)", room: "E202" },
+      
+      { day: 5, slot: 1, type: "theory", code: "UHV", name: "Universal Human Values", professor: "Neelam Jadhav (NJ)", room: "E202" },
+      { day: 5, slot: 2, type: "theory", code: "DS", name: "Data Structures", professor: "Alka Kumbhar (AAK)", room: "E202" }
+    ];
+  </script>
+  <script src="engine.js"></script>
+  <script>
+    initPage(SE2_SCHEDULE, []);
+  </script>
+</body>
+</html>

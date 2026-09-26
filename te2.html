@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TE2 Timetable - Room E204</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <a href="index.html" class="back-btn">&larr;</a>
+        <div class="topbar-info">
+            <h1>TE2 Timetable</h1>
+            <p>Computer Engineering - Room E204</p>
+        </div>
+    </header>
+
+    <div class="day-strip">
+        <button class="day-btn" data-day="1">Mon</button>
+        <button class="day-btn" data-day="2">Tue</button>
+        <button class="day-btn" data-day="3">Wed</button>
+        <button class="day-btn" data-day="4">Thu</button>
+        <button class="day-btn" data-day="5">Fri</button>
+    </div>
+
+    <main class="timeline" id="timeline"></main>
+
+    <footer class="page-footer">
+        Maintained by Swaraj Shelke
+        <div class="footer-social">
+            <a href="https://github.com/swarajshelke12" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/swarajshelke12" target="_blank" rel="noopener">Instagram</a>
+        </div>
+    </footer>
+
+    <script>
+        const TE2_SCHEDULE = {
+            1: {
+                name: "Monday",
+                slots: {
+                    4: { type: "theory", code: "CNS", name: "Computer Network Security", faculty: "Sangeetha Navale (SN)", room: "E204" },
+                    5: { type: "theory", code: "AI", name: "Artificial Intelligence", faculty: "Jagruti Zope (JZ)", room: "E204" },
+                    6: { type: "theory", code: "EL-I", name: "Elective I (Cloud Computing)", faculty: "Surekha Dhumal (SD)", room: "E204" }
+                }
+            },
+            2: {
+                name: "Tuesday",
+                slots: {
+                    3: { type: "theory", code: "TOC", name: "Theory of Computation", faculty: "Pradnya Kothawade (PK)", room: "E204" },
+                    4: { type: "theory", code: "AI", name: "Artificial Intelligence", faculty: "Jagruti Zope (JZ)", room: "E204" },
+                    5: { type: "theory", code: "EL-I", name: "Elective I (Cloud Computing)", faculty: "Surekha Dhumal (SD)", room: "E204" }
+                }
+            },
+            3: {
+                name: "Wednesday",
+                slots: {
+                    3: { type: "theory", code: "AI", name: "Artificial Intelligence", faculty: "Jagruti Zope (JZ)", room: "E204" },
+                    4: { type: "theory", code: "EL-I", name: "Elective I (Cloud Computing)", faculty: "Surekha Dhumal (SD)", room: "E204" }
+                }
+            },
+            4: {
+                name: "Thursday",
+                slots: {
+                    4: { type: "theory", code: "TOC", name: "Theory of Computation", faculty: "Pradnya Kothawade (PK)", room: "E204" },
+                    5: { type: "theory", code: "CNS", name: "Computer Network Security", faculty: "Sangeetha Navale (SN)", room: "E204" }
+                }
+            },
+            5: {
+                name: "Friday",
+                slots: {
+                    3: { type: "theory", code: "TOC", name: "Theory of Computation", faculty: "Pradnya Kothawade (PK)", room: "E204" },
+                    4: { type: "theory", code: "CN", name: "Computer Networks", faculty: "Sangeetha Navale (SN)", room: "E204" }
+                }
+            }
+        };
+    </script>
+    <script src="engine.js"></script>
+    <script>initPage(TE2_SCHEDULE, []);</script>
+</body>
+</html>
