@@ -17,11 +17,12 @@ body {
   min-height: 100vh;
 }
 
-/* Landing Page */
+/* Landing Page Styles */
 .landing {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
 .header {
@@ -29,18 +30,25 @@ body {
   padding: 32px 24px 24px;
   text-align: center;
   border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
 .header h1 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.25rem;
+  font-weight: 800;
   color: #0f172a;
   margin-bottom: 8px;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #1e40af, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .header p {
   color: #64748b;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .main-content {
@@ -61,32 +69,35 @@ body {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   padding: 32px 24px;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02);
+  border: 1px solid #f1f5f9;
 }
 
 .class-card:hover {
-  border-color: #3b82f6;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transform: translateY(-2px);
+  border-color: #CBD5E1;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.05);
+  transform: translateY(-4px);
 }
 
 .class-name {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.625rem;
+  font-weight: 800;
   color: #0f172a;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
 }
 
 .class-room {
   color: #64748b;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 /* Timetable Views */
@@ -100,7 +111,7 @@ body {
 
 /* Top Navigation */
 .topbar {
-  background: #ffffff;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   padding: 16px 24px;
   display: flex;
   align-items: center;
@@ -109,7 +120,7 @@ body {
   top: 0;
   z-index: 100;
   border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
 
 .back-btn {
@@ -185,33 +196,39 @@ body {
 }
 
 /* Timeline */
-.timeline {
-  padding: 16px 24px;
+.timetable {
+  padding: 20px 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
+  gap: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  margin: 8px;
+  border-radius: 16px;
+
 
 /* Lecture Card */
 .lecture-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-left: 3px solid #3b82f6;
-  border-radius: 8px;
-  padding: 16px;
-  transition: all 0.15s;
+  border-left: 4px solid #3b82f6;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
 .lecture-card.live {
-  background: #eff6ff;
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
   border-color: #3b82f6;
   border-left-color: #2563eb;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15), 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .lecture-card.next {
-  background: #fffbeb;
+  background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
   border-color: #f59e0b;
   border-left-color: #f59e0b;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15), 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .card-head {
@@ -525,7 +542,7 @@ body {
       <button class="day-btn" data-day="5">Fri</button>
     </div>
 
-    <main class="timeline" id="timeline-SE1"></main>
+    <main class="timetable" id="timetable-SE1"></main>
 
     <footer class="footer">
       <div class="footer-text">
@@ -556,7 +573,7 @@ body {
       <button class="day-btn" data-day="5">Fri</button>
     </div>
 
-    <main class="timeline" id="timeline-SE2"></main>
+    <main class="timetable" id="timetable-SE2"></main>
 
     <footer class="footer">
       <div class="footer-text">
@@ -1051,15 +1068,15 @@ function updateDayButtons(viewName) {
 
 function renderTimetable(className) {
   const schedule = SCHEDULES[className];
-  const timeline = document.getElementById('timeline-' + className);
+  const timetable = document.getElementById('timetable-' + className);
   
-  if (!timeline || !schedule) return;
+  if (!timetable || !schedule) return;
   
   const dayData = schedule[selectedDay];
   let html = '';
   
   if (!dayData || Object.keys(dayData).length === 0) {
-    timeline.innerHTML = '<div class="empty-day"><p>No classes scheduled for this day</p></div>';
+    timetable.innerHTML = '<div class="empty-day"><p>No classes scheduled for this day</p></div>';
     return;
   }
   
@@ -1108,8 +1125,8 @@ function renderTimetable(className) {
     }
   });
   
-  timeline.innerHTML = html;
-}
+  timetable.innerHTML = html;
+  }
 
 /* Initialize day buttons */
 function initDayButtons() {
