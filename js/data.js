@@ -28,7 +28,7 @@ const CLASS_CONFIG = {
     title: "SE-2 Timetable",
     subtitle: "Second Year • Room E202",
     room: "Room E202",
-    batches: ["ALL"]
+    batches: ["ALL", "A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
   },
   TE1: {
     name: "TE-1",
@@ -204,26 +204,135 @@ const SCHEDULES = {
   // ==========================================
   SE2: {
     1: { // Monday
-      1: { type: 'theory', code: 'DS', name: 'Data Structures', prof: 'Alka Kumbhar (AAK)', room: 'E202' },
-      2: { type: 'theory', code: 'OS', name: 'Operating Systems', prof: 'Smita Sapkal (SS)', room: 'E202' }
+      1: { type: 'theory', code: 'DS', name: 'Data Structures', prof: 'Prof. Alka Kumbhar (AAK)', room: 'E202' },
+      2: { type: 'theory', code: 'OS', name: 'Operating Systems', prof: 'Prof. Smita Sapkal (SS)', room: 'E202' },
+      "3-4": {
+        type: 'practical',
+        title: 'Practical Sessions (Slots 3-4: 11:15 AM - 1:15 PM)',
+        batches: {
+          A1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101' },
+          A2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Shreya Nehe', room: 'Room A101B' },
+          A3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          B1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Smita Kathar', room: 'Room A204' },
+          B2: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Ashvini Kheole', room: 'Lab A102' },
+          B3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106A' },
+          C1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Smita Sapkal', room: 'Lab A106B' },
+          C2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Jagruti Zope', room: 'Room A105' },
+          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+        }
+      },
+      "5-6": {
+        type: 'practical',
+        title: 'Practical Sessions (Slots 5-6: 1:45 PM - 3:45 PM)',
+        batches: {
+          A1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101A' },
+          A3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          B1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106A' },
+          B2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          B3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Mahesh Swami', room: 'Room A104' },
+          C1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Neelam Jadhav', room: 'Room A104' },
+          C2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Smita Sapkal', room: 'Lab A106B' },
+          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+        }
+      }
     },
     2: { // Tuesday
-      1: { type: 'theory', code: 'OS', name: 'Operating Systems', prof: 'Smita Sapkal (SS)', room: 'E202' },
-      2: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', prof: 'Ashvini Kheole (APK)', room: 'E202' },
-      3: { type: 'theory', code: 'DS', name: 'Data Structures', prof: 'Alka Kumbhar (AAK)', room: 'E202' },
-      4: { type: 'theory', code: 'DELD', name: 'Digital Electronics & Logic Design', prof: 'Snehal Chaudhri (SC)', room: 'E202' }
+      1: { type: 'theory', code: 'OS', name: 'Operating Systems', prof: 'Prof. Smita Sapkal (SS)', room: 'E202' },
+      2: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', prof: 'Prof. Ashvini Kheole (APK)', room: 'E202' },
+      3: { type: 'theory', code: 'DS', name: 'Data Structures', prof: 'Prof. Alka Kumbhar (AAK)', room: 'E202' },
+      4: { type: 'theory', code: 'DELD', name: 'Digital Electronics & Logic Design', prof: 'Prof. Smita Kathar (SK)', room: 'E202' },
+      "5-6": {
+        type: 'practical',
+        title: 'Practical Sessions (Slots 5-6: 1:45 PM - 3:45 PM)',
+        batches: {
+          A1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101A' },
+          A2: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Kalyani Zore', room: 'Lab A105' },
+          A3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101B' },
+          B1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          B2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106A' },
+          B3: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Ashvini Kheole', room: 'Lab A102' },
+          C1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Smita Sapkal', room: 'Lab A106B' },
+          C2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Jagruti Zope', room: 'Room A103' },
+          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+        }
+      }
     },
     3: { // Wednesday
-      1: { type: 'theory', code: 'OS', name: 'Operating Systems', prof: 'Smita Sapkal (SS)', room: 'E202' },
-      2: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', prof: 'Ashvini Kheole (APK)', room: 'E202' }
+      1: { type: 'theory', code: 'OS', name: 'Operating Systems', prof: 'Prof. Smita Sapkal (SS)', room: 'E202' },
+      2: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', prof: 'Prof. Ashvini Kheole (APK)', room: 'E202' },
+      "3-4": {
+        type: 'practical',
+        title: 'Practical Sessions (Slots 3-4: 11:15 AM - 1:15 PM)',
+        batches: {
+          A1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101' },
+          A3: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Kalyani Zore', room: 'Lab A105' },
+          B1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Smita Kathar', room: 'Room A204' },
+          B2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106B' },
+          B3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Mahesh Swami', room: 'Room A104' },
+          C1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          C2: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Ashvini Kheole', room: 'Lab A102' },
+          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+        }
+      },
+      5: { type: 'theory', code: 'DM', name: 'Discrete Mathematics', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'Common Room' },
+      6: { type: 'theory', code: 'ED', name: 'Engineering Design', prof: 'Prof. Nilam Naidu (NN)', room: 'Common Room' }
     },
     4: { // Thursday
-      1: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', prof: 'Ashvini Kheole (APK)', room: 'E202' },
-      2: { type: 'theory', code: 'DELD', name: 'Digital Electronics & Logic Design', prof: 'Snehal Chaudhri (SC)', room: 'E202' }
+      1: { type: 'theory', code: 'OOPCG', name: 'OOP & Computer Graphics', prof: 'Prof. Ashvini Kheole (APK)', room: 'E202' },
+      2: { type: 'theory', code: 'DELD', name: 'Digital Electronics & Logic Design', prof: 'Prof. Smita Kathar (SK)', room: 'E202' },
+      "3-4": {
+        type: 'practical',
+        title: 'Practical Sessions (Slots 3-4: 11:15 AM - 1:15 PM)',
+        batches: {
+          A1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Shreya Nehe', room: 'Room A101B' },
+          A3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101A' },
+          B1: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Kalyani Zore', room: 'Lab A105' },
+          B2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Mahesh Swami', room: 'Room A104' },
+          B3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106B' },
+          C1: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Ashvini Kheole', room: 'Lab A102' },
+          C2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+        }
+      },
+      "5-6": {
+        type: 'practical',
+        title: 'Practical Sessions (Slots 5-6: 1:45 PM - 3:45 PM)',
+        batches: {
+          A1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Nilima Patil', room: 'Room A101A' },
+          B1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          B2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          B3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          C1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          C2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Smita Sapkal', room: 'Lab A106A' },
+          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+        }
+      }
     },
     5: { // Friday
-      1: { type: 'theory', code: 'UHV', name: 'Universal Human Values', prof: 'Neelam Jadhav (NJ)', room: 'E202' },
-      2: { type: 'theory', code: 'DS', name: 'Data Structures', prof: 'Alka Kumbhar (AAK)', room: 'E202' }
+      1: { type: 'theory', code: 'UHV', name: 'Universal Human Values', prof: 'Prof. Neelam Jadhav (NJ)', room: 'E202' },
+      2: { type: 'theory', code: 'DS', name: 'Data Structures', prof: 'Prof. Alka Kumbhar (AAK)', room: 'E202' },
+      "3-4": {
+        type: 'practical',
+        title: 'Practical Sessions (Slots 3-4: 11:15 AM - 1:15 PM)',
+        batches: {
+          A1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Nilima Patil', room: 'Room A105' },
+          B1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106A' },
+          B2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Mahesh Swami', room: 'Room A104' },
+          B3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          C1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          C2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+        }
+      },
+      5: { type: 'theory', code: 'DM', name: 'Discrete Mathematics', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'Common Room' },
+      6: { type: 'theory', code: 'ED', name: 'Engineering Design', prof: 'Prof. Nilam Naidu (NN)', room: 'Common Room' }
     }
   },
 
