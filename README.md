@@ -20,12 +20,13 @@ A simple, lightning-fast, and mobile-friendly timetable web app for **Computer E
 
 ```
 TimeTable GSMV/
+├── assets/
+│   ├── css/
+│   │   └── style.css         # Modern typography, colors, animations, responsive design
+│   └── js/
+│       ├── data.js           # Verified timetable data (slots, classes, batches, rooms, faculty)
+│       └── app.js            # Dynamic routing, batch filtering, live clock & state management
 ├── index.html            # Clean HTML skeleton & SPA view containers
-├── css/
-│   └── style.css         # Modern typography, colors, animations, responsive design
-└── js/
-    ├── data.js           # Verified timetable data (slots, classes, batches, rooms, faculty)
-    └── app.js            # Dynamic routing, batch filtering, live clock & state management
 ```
 
 ---
@@ -45,6 +46,6 @@ Built with ❤️ by **Swaraj Shelke** (SE Computer Engineering, PICT).
 
 Connect with me:
 - 🐙 [GitHub](https://github.com/swarajshelke12)
-- 💼 [LinkedIn](https://www.linkedin.com/in/swaraj-shelke-0a3a752b8/)
+- 💼 [LinkedIn](https://www.linkedin.com/in/swaraj-shelke-0a3a752b8)
 - 📸 [Instagram](https://www.instagram.com/swarajshelke12)
-- 📺 [YouTube](https://www.youtube.com/@swaraj_shelke)
+- 📺 [YouTube](https://youtube.com/@swarajshelke12)
