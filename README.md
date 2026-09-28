@@ -1,26 +1,41 @@
-# SE2 Class Timetable
+# Department Timetable Viewer - Computer Engineering
 
-A simple, lightning-fast, and mobile-friendly timetable web app designed exclusively for **SE2 Computer Engineering** students.
+A simple, lightning-fast, and mobile-friendly timetable web app for **Computer Engineering** students across all classes: **SE1, SE2, TE1, TE2, and BE**.
 
 ---
+
 ## ✨ Features
 
-- **Accurate SE2 Schedule**: Extracted directly from the official timetable with classroom (E202), lab room numbers, and faculty details.
-- **1-Tap Batch Filter**: Switch between `ALL` or your specific batch (`A1`–`C3`). Selected batch is saved automatically.
-- **Clean Daily Timeline**: Browse lectures day-by-day (Mon–Fri) with automated detection of today's schedule.
-- **Live Status & Countdown**: Shows real-time indicators for "Live" lectures and "Up Next" countdowns.
-- **Full Weekly Grid View**: Compact matrix table to review the entire 5-day week at a glance.
-- **Faculty & Subject Directory**: Quick look-up for subject full names, faculty in-charge, and classrooms/labs.
-- **Built-in Assistant**: Instant answers for your next class, break timings, faculty inquiries, and lab rooms.
-- **Clean & Crisp UI**: High-contrast, easy-on-the-eyes light design with modern typography.
+- **100% Accurate Schedule**: Complete schedule with classroom numbers (E201, E202, E203, E204), lab room numbers, and faculty details.
+- **Single-Page Application (SPA)**: Instant navigation between classes and days without any page reloads.
+- **1-Tap Batch Filter**: Switch between `ALL` or your specific batch (`A1`–`C3`). Selected batch is saved automatically in `localStorage`.
+- **Live Status Indicator**: Real-time indicators for "Live Now" lectures and "Up Next" classes.
+- **Clean Daily Timeline**: Browse lectures day-by-day (Mon–Fri) with automatic detection and selection of today's schedule.
+- **Modular & Maintainable**: Clean separation between data (`js/data.js`), styling (`css/style.css`), application logic (`js/app.js`), and structure (`index.html`).
+- **Clean & Crisp UI**: High-contrast, easy-on-the-eyes design with modern typography.
 
 ---
 
-## 🚀 How to Use
+## 🚀 Project Structure
+
+```
+TimeTable GSMV/
+├── index.html            # Clean HTML skeleton & SPA view containers
+├── css/
+│   └── style.css         # Modern typography, colors, animations, responsive design
+└── js/
+    ├── data.js           # Verified timetable data (slots, classes, batches, rooms, faculty)
+    └── app.js            # Dynamic routing, batch filtering, live clock & state management
+```
+
+---
+
+## 💻 How to Use
 
 1. Open `index.html` in any browser on your phone, tablet, or PC.
-2. Select your batch pill at the top (`A1` through `C3`, or `ALL`).
-3. View your daily lectures under **Daily Schedule**, check the **Weekly Grid**, or ask the **Assistant**.
+2. Select your class (`SE-1`, `SE-2`, `TE-1`, `TE-2`, or `BE`).
+3. Select your batch pill if applicable (`A1` through `C3`, or `ALL`).
+4. View your daily lectures and practical sessions.
 
 ---
 
