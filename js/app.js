@@ -317,7 +317,7 @@
     });
 
     return `
-      <div class="${cardClass}">
+      <div class="${cardClass} animate-enter" style="animation-delay: ${index * 50}ms;">
         <div class="card-head">
           <span class="time-tag">${timeLabel}</span>
           ${statusBadge}
