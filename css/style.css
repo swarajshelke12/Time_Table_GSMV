@@ -3,12 +3,14 @@
    Designed for clean readability, fast scanning, and mobile UX
    ========================================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+
 :root {
-  --bg-app: #f8fafc;
+  --bg-app: #fcfcfd;
   --bg-surface: #ffffff;
   --bg-elevated: #ffffff;
   --bg-muted: #f1f5f9;
-  --bg-hover: #e2e8f0;
+  --bg-hover: #f8fafc;
   
   --border-subtle: #e2e8f0;
   --border-strong: #cbd5e1;
@@ -17,10 +19,10 @@
   --text-muted: #475569;
   --text-dim: #94a3b8;
   
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-light: #eff6ff;
-  --primary-border: #bfdbfe;
+  --primary: #000000;
+  --primary-hover: #1e293b;
+  --primary-light: #f1f5f9;
+  --primary-border: #cbd5e1;
   
   --live-bg: #ecfdf5;
   --live-text: #059669;
@@ -31,15 +33,15 @@
   --next-text: #d97706;
   --next-border: #fde68a;
   
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
   --radius-full: 9999px;
   
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-  --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 12px 24px -4px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+  --shadow-card: 0 2px 10px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
 }
 
 /* Reset & Base */
@@ -51,13 +53,26 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "Inter", "Segoe UI", Roboto, sans-serif;
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-app);
   color: var(--text-main);
   line-height: 1.5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animations */
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-enter {
+  animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
 }
 
 #app {
@@ -103,16 +118,16 @@ body {
 }
 
 .landing-header h1 {
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   font-weight: 800;
   color: var(--text-main);
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
 }
 
 .landing-header p {
   color: var(--text-muted);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 500;
   max-width: 500px;
   margin: 0 auto;
@@ -145,15 +160,15 @@ body {
 .class-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  padding: 24px 20px;
+  padding: 32px 24px;
   border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
 }
@@ -165,19 +180,22 @@ body {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  background: var(--text-main);
   opacity: 0;
-  transition: opacity 0.2s;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .class-card:hover {
-  border-color: var(--primary-border);
+  border-color: var(--border-strong);
   box-shadow: var(--shadow-lg);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 }
 
 .class-card:hover::before {
   opacity: 1;
+  transform: scaleX(1);
 }
 
 .class-card-name {

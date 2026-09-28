@@ -175,16 +175,18 @@
     const isToday = selectedDay === new Date().getDay();
     let html = '';
     const skipSlots = {};
+    let cardIndex = 0;
 
-    TIME_SLOTS.forEach(slot => {
+    TIME_SLOTS.forEach((slot, i) => {
       // Break Slots
       if (slot.isBreak) {
         html += `
-          <div class="break-card">
+          <div class="break-card animate-enter" style="animation-delay: ${cardIndex * 50}ms;">
             <span class="break-label">${slot.label}</span>
             <span class="break-time">${slot.time}</span>
           </div>
         `;
+        cardIndex++;
         return;
       }
 
@@ -230,18 +232,19 @@
 
       // Render Practical Card
       if (entry.type === 'practical') {
-        html += renderPracticalCard(entry, timeLabel, isLive, isNext, cardClass);
+        html += renderPracticalCard(entry, timeLabel, isLive, isNext, cardClass, cardIndex);
       } else {
         // Render Theory Card
-        html += renderTheoryCard(entry, timeLabel, isLive, isNext, cardClass);
+        html += renderTheoryCard(entry, timeLabel, isLive, isNext, cardClass, cardIndex);
       }
+      cardIndex++;
     });
 
     container.innerHTML = html;
   }
 
   // Render Theory Card
-  function renderTheoryCard(entry, timeLabel, isLive, isNext, cardClass) {
+  function renderTheoryCard(entry, timeLabel, isLive, isNext, cardClass, index) {
     let statusBadge = '';
     if (isLive) {
       statusBadge = '<span class="status-badge live">Live Now</span>';
@@ -250,7 +253,7 @@
     }
 
     return `
-      <div class="${cardClass}">
+      <div class="${cardClass} animate-enter" style="animation-delay: ${index * 50}ms;">
         <div class="card-head">
           <span class="time-tag">${timeLabel}</span>
           ${statusBadge}
@@ -268,7 +271,7 @@
   }
 
   // Render Practical Card
-  function renderPracticalCard(entry, timeLabel, isLive, isNext, cardClass) {
+  function renderPracticalCard(entry, timeLabel, isLive, isNext, cardClass, index) {
     let statusBadge = '';
     if (isLive) {
       statusBadge = '<span class="status-badge live">Live Now</span>';
@@ -280,7 +283,7 @@
     if (selectedBatch !== 'ALL' && entry.batches && entry.batches[selectedBatch]) {
       const b = entry.batches[selectedBatch];
       return `
-        <div class="${cardClass}">
+        <div class="${cardClass} animate-enter" style="animation-delay: ${index * 50}ms;">
           <div class="card-head">
             <span class="time-tag">${timeLabel}</span>
             ${statusBadge}
