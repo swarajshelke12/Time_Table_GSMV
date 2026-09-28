@@ -340,7 +340,7 @@
 
   // Handle URL Hash Navigation
   function handleHash() {
-    const hash = window.location.hash.replace('#', '').trim();
+    const hash = window.location.hash.slice(1);
     if (hash && CLASS_CONFIG[hash]) {
       navigateTo(hash);
     } else {
@@ -354,11 +354,9 @@
     window.addEventListener('hashchange', handleHash);
 
     // Periodic refresh for live time and lecture indicators
-    setInterval(function () {
+    setInterval(() => {
       updateLiveClock();
-      if (currentClass) {
-        renderClassView();
-      }
+      if (currentClass) renderClassView();
     }, 30000);
   });
 
