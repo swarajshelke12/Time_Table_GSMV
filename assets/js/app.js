@@ -353,6 +353,14 @@
     handleHash();
     window.addEventListener('hashchange', handleHash);
 
+    // Keyboard accessibility for interactive cards
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('class-card')) {
+        e.preventDefault();
+        e.target.click();
+      }
+    });
+
     // Periodic refresh for live time and lecture indicators
     setInterval(() => {
       updateLiveClock();
