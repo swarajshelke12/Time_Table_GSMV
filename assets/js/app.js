@@ -12,6 +12,13 @@
   let selectedDay = 1;
   let selectedBatch = localStorage.getItem('gsmv_selected_batch') || 'ALL';
 
+  // 2-hour practical slot pairings
+  const COMBINED_SLOTS = {
+    1: { key: '1-2', skip: 2, time: '9:00 - 11:00 AM', startMin: 540, endMin: 660 },
+    3: { key: '3-4', skip: 4, time: '11:15 AM - 1:15 PM', startMin: 675, endMin: 795 },
+    5: { key: '5-6', skip: 6, time: '1:45 - 3:45 PM', startMin: 825, endMin: 945 }
+  };
+
   // Helper: Get minutes from midnight
   function getNowMinutes() {
     const now = new Date();
@@ -91,33 +98,17 @@
   function renderDayStrip() {
     const container = document.getElementById('day-strip');
     if (!container) return;
-
     const today = new Date().getDay();
 
-    let html = '';
-    DAYS.forEach(day => {
-      const isActive = day.id === selectedDay;
-      const isToday = day.id === today;
-      html += `
-        <button 
-          class="day-btn ${isActive ? 'active' : ''} ${isToday ? 'is-today' : ''}" 
-          data-day="${day.id}"
-          title="${day.full}${isToday ? ' (Today)' : ''}"
-        >
-          ${day.short}
-        </button>
-      `;
-    });
-
-    container.innerHTML = html;
-
-    // Attach click events
-    container.querySelectorAll('.day-btn').forEach(btn => {
-      btn.addEventListener('click', function () {
-        selectedDay = parseInt(this.dataset.day, 10);
-        renderClassView();
-      });
-    });
+    container.innerHTML = DAYS.map(day => `
+      <button 
+        class="day-btn ${day.id === selectedDay ? 'active' : ''} ${day.id === today ? 'is-today' : ''}" 
+        data-day="${day.id}"
+        title="${day.full}${day.id === today ? ' (Today)' : ''}"
+      >
+        ${day.short}
+      </button>
+    `).join('');
   }
 
   // Render Batch Strip
@@ -132,26 +123,12 @@
     }
 
     wrapper.style.display = 'flex';
-    let html = '<span class="batch-label">Batch:</span>';
-    availableBatches.forEach(b => {
-      const isActive = b === selectedBatch;
-      html += `
-        <button class="batch-btn ${isActive ? 'active' : ''}" data-batch="${b}">
+    container.innerHTML = '<span class="batch-label">Batch:</span>' +
+      availableBatches.map(b => `
+        <button class="batch-btn ${b === selectedBatch ? 'active' : ''}" data-batch="${b}">
           ${b}
         </button>
-      `;
-    });
-
-    container.innerHTML = html;
-
-    // Attach click events
-    container.querySelectorAll('.batch-btn').forEach(btn => {
-      btn.addEventListener('click', function () {
-        selectedBatch = this.dataset.batch;
-        localStorage.setItem('gsmv_selected_batch', selectedBatch);
-        renderClassView();
-      });
-    });
+      `).join('');
   }
 
   // Render Schedule Timeline
@@ -192,39 +169,15 @@
 
       if (skipSlots[slot.id]) return;
 
-      // Check for combined 2-hour slots ("1-2", "3-4", "5-6")
-      const combined12 = (slot.id === 1 || slot.id === 2) && dayData['1-2'];
-      const combined34 = (slot.id === 3 || slot.id === 4) && dayData['3-4'];
-      const combined56 = (slot.id === 5 || slot.id === 6) && dayData['5-6'];
+      const combo = COMBINED_SLOTS[slot.id];
+      const hasCombo = combo && dayData[combo.key];
+      const entry = hasCombo ? dayData[combo.key] : dayData[slot.id];
+      if (!entry) return;
 
-      if (slot.id === 2 && dayData['1-2']) { skipSlots[2] = true; return; }
-      if (slot.id === 4 && dayData['3-4']) { skipSlots[4] = true; return; }
-      if (slot.id === 6 && dayData['5-6']) { skipSlots[6] = true; return; }
-
-      let entry, sMin, eMin, timeLabel;
-
-      if (combined12 && slot.id === 1) {
-        entry = dayData['1-2'];
-        sMin = 540; eMin = 660;
-        timeLabel = "9:00 - 11:00 AM";
-        skipSlots[2] = true;
-      } else if (combined34 && slot.id === 3) {
-        entry = dayData['3-4'];
-        sMin = 675; eMin = 795;
-        timeLabel = "11:15 AM - 1:15 PM";
-        skipSlots[4] = true;
-      } else if (combined56 && slot.id === 5) {
-        entry = dayData['5-6'];
-        sMin = 825; eMin = 945;
-        timeLabel = "1:45 - 3:45 PM";
-        skipSlots[6] = true;
-      } else {
-        entry = dayData[slot.id];
-        if (!entry) return;
-        sMin = slot.startMin;
-        eMin = slot.endMin;
-        timeLabel = slot.time;
-      }
+      const sMin = hasCombo ? combo.startMin : slot.startMin;
+      const eMin = hasCombo ? combo.endMin : slot.endMin;
+      const timeLabel = hasCombo ? combo.time : slot.time;
+      if (hasCombo) skipSlots[combo.skip] = true;
 
       const isLive = isToday && now >= sMin && now < eMin;
       const isNext = isToday && now < sMin && (sMin - now) <= 45;
@@ -361,17 +314,35 @@
       }
     });
 
+    // Event delegation for day and batch selection
+    document.getElementById('day-strip')?.addEventListener('click', e => {
+      const btn = e.target.closest('.day-btn');
+      if (btn) {
+        selectedDay = parseInt(btn.dataset.day, 10);
+        renderClassView();
+      }
+    });
+
+    document.getElementById('batch-strip')?.addEventListener('click', e => {
+      const btn = e.target.closest('.batch-btn');
+      if (btn) {
+        selectedBatch = btn.dataset.batch;
+        localStorage.setItem('gsmv_selected_batch', selectedBatch);
+        renderClassView();
+      }
+    });
+
     // Register Service Worker for offline capability
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(() => {
-        // Silently handle offline registration failure in environments without HTTPS/SW support
-      });
+      navigator.serviceWorker.register('sw.js').catch(() => {});
     }
 
-    // Periodic refresh for live time and lecture indicators
+    // Periodic refresh for live time and lecture indicators only
     setInterval(() => {
       updateLiveClock();
-      if (currentClass) renderClassView();
+      if (currentClass && SCHEDULES[currentClass]) {
+        renderTimeline(SCHEDULES[currentClass]);
+      }
     }, 30000);
   });
 
