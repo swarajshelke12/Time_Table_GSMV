@@ -4,7 +4,7 @@ A simple, lightning-fast, and mobile-friendly timetable web app for **Computer E
 
 ---
 
-## ✨ Features
+## Features
 
 - **100% Accurate Schedule**: Complete schedule with classroom numbers (E201, E202, E203, E204), lab room numbers, and faculty details.
 - **Single-Page Application (SPA)**: Instant navigation between classes and days without any page reloads.
@@ -16,7 +16,7 @@ A simple, lightning-fast, and mobile-friendly timetable web app for **Computer E
 
 ---
 
-## 🚀 Project Structure
+## Project Structure
 
 ```
 TimeTable GSMV/
@@ -31,7 +31,7 @@ TimeTable GSMV/
 
 ---
 
-## 💻 How to Use
+## How to Use
 
 1. Open `index.html` in any browser on your phone, tablet, or PC.
 2. Select your class (`SE-1`, `SE-2`, `TE-1`, `TE-2`, or `BE`).
@@ -40,12 +40,12 @@ TimeTable GSMV/
 
 ---
 
-## 👨‍💻 Developer & Connect
+## Developer & Connect
 
-Built with ❤️ by **Swaraj Shelke** (SE Computer Engineering, PICT).
+Built by **Swaraj Shelke** (SE Computer Engineering, PICT).
 
 Connect with me:
-- 🐙 [GitHub](https://github.com/swarajshelke12)
-- 💼 [LinkedIn](https://www.linkedin.com/in/swaraj-shelke-0a3a752b8)
-- 📸 [Instagram](https://www.instagram.com/swarajshelke12)
-- 📺 [YouTube](https://youtube.com/@swarajshelke12)
+- [GitHub](https://github.com/swarajshelke12)
+- [LinkedIn](https://www.linkedin.com/in/swaraj-shelke-0a3a752b8)
+- [Instagram](https://www.instagram.com/swarajshelke12)
+- [YouTube](https://youtube.com/@swarajshelke12)
