@@ -766,3 +766,39 @@ body {
   .timetable-container { padding: 16px 12px 32px; }
   .batch-matrix { grid-template-columns: 1fr 1fr; }
 }
+
+/* Print optimization for physical print and PDF export */
+@media print {
+  .back-btn,
+  .day-strip-container,
+  .batch-strip-container,
+  .footer,
+  .live-clock-badge {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .topbar {
+    position: static !important;
+    border-bottom: 2px solid #000000 !important;
+    box-shadow: none !important;
+    padding: 8px 0 !important;
+  }
+
+  .lecture-card {
+    break-inside: avoid;
+    border: 1px solid #94a3b8 !important;
+    box-shadow: none !important;
+    margin-bottom: 12px !important;
+  }
+
+  .matrix-cell {
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+  }
+}
+
