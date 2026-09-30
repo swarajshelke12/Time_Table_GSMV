@@ -6,23 +6,23 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](./assets/js/app.js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 
-A lightning-fast, offline-capable, and mobile-first timetable web app for **Computer Engineering** students across all classes: **SE-1, SE-2, TE-1, TE-2, and BE**.
+A lightweight, offline-capable timetable web application for Computer Engineering students across classes: **SE-1, SE-2, TE-1, TE-2, and BE**.
 
 ---
 
-## ✨ Features
+## Features
 
-- **100% Verified Schedule**: Complete schedules with classroom numbers (`E201`, `E202`, `E203`, `E204`), lab rooms, and faculty details.
-- **Single-Page Application (SPA)**: Instant navigation between classes and weekdays with zero reloads.
-- **1-Tap Batch Filter**: Toggle between `ALL` or your specific batch (`A1`–`C3`). Saved automatically to `localStorage`.
-- **Live Status Badges**: Real-time indicators for "Live Now" active lectures and "Up Next" classes.
-- **Offline & PWA Support**: Installable as a standalone app on iOS/Android; works offline via Service Worker caching.
-- **Print & PDF Ready**: Dedicated `@media print` layout for exporting crisp timetable handouts or PDFs.
-- **Accessible & Responsive**: Full keyboard navigation (`Tab`, `Enter`, `Space`), ARIA roles, and high-contrast typography.
+- **Accurate Schedule**: Classroom numbers (`E201`, `E202`, `E203`, `E204`), lab rooms, and faculty details.
+- **Single-Page Application (SPA)**: Fast navigation between classes and weekdays with zero reloads.
+- **Batch Filter**: Toggle between `ALL` or specific batches (`A1`–`C3`), saved to `localStorage`.
+- **Live Status Badges**: Indicators for "Live Now" active lectures and "Up Next" classes.
+- **Offline & PWA Support**: Installable as a standalone app; works offline via Service Worker caching.
+- **Print & PDF Ready**: Dedicated `@media print` layout for exporting clean timetable handouts or PDFs.
+- **Accessible & Responsive**: Keyboard navigation (`Tab`, `Enter`, `Space`), ARIA roles, and high-contrast typography.
 
 ---
 
-## 🚀 Project Structure
+## Project Structure
 
 ```
 TimeTable GSMV/
@@ -32,7 +32,7 @@ TimeTable GSMV/
 │   ├── icons/
 │   │   └── favicon.svg       # Vector app & tab icon
 │   └── js/
-│       ├── data.js           # Verified timetable database (slots, classes, batches, rooms, faculty)
+│       ├── data.js           # Timetable database (slots, classes, batches, rooms, faculty)
 │       └── app.js            # SPA controller, hash routing, batch filter, clock & SW register
 ├── index.html                # Semantic HTML skeleton & SPA view containers
 ├── manifest.json             # PWA Web App Manifest for mobile installation
@@ -42,24 +42,24 @@ TimeTable GSMV/
 
 ---
 
-## 📱 How to Use & Install
+## How to Use & Install
 
 ### Web Browser
-1. Open `index.html` in any browser on your phone, tablet, or PC.
-2. Select your class (`SE-1`, `SE-2`, `TE-1`, `TE-2`, or `BE`).
-3. Tap your batch pill (`A1` to `C3`, or `ALL`) to highlight your schedule.
+1. Open `index.html` in any modern web browser.
+2. Select a class (`SE-1`, `SE-2`, `TE-1`, `TE-2`, or `BE`).
+3. Select a batch (`A1` to `C3`, or `ALL`) to view practical sessions.
 
 ### Install as App (PWA)
-- **On Android (Chrome)**: Tap the browser menu (`⋮`) → **Add to Home screen** / **Install app**.
-- **On iOS (Safari)**: Tap the Share button → **Add to Home Screen**.
+- **Android (Chrome)**: Tap the browser menu (`...`) -> **Add to Home screen** / **Install app**.
+- **iOS (Safari)**: Tap Share -> **Add to Home Screen**.
 
 ---
 
-## 👨‍💻 Developer & Connect
+## Author & Links
 
-Built with ❤️ by **Swaraj Shelke** (Computer Engineering).
+Built by **Swaraj Shelke** (Computer Engineering).
 
-- 🐙 [GitHub](https://github.com/swarajshelke12)
-- 💼 [LinkedIn](https://www.linkedin.com/in/swaraj-shelke-0a3a752b8)
-- 📸 [Instagram](https://www.instagram.com/swarajshelke12)
-- 📺 [YouTube](https://youtube.com/@swarajshelke12)
+- [GitHub](https://github.com/swarajshelke12)
+- [LinkedIn](https://www.linkedin.com/in/swaraj-shelke-0a3a752b8)
+- [Instagram](https://www.instagram.com/swarajshelke12)
+- [YouTube](https://youtube.com/@swarajshelke12)
