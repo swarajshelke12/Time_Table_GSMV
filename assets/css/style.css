@@ -725,19 +725,35 @@ body {
 .footer-socials {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .footer-socials a {
   color: var(--text-muted);
   text-decoration: none;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
   transition: color 0.15s ease;
+}
+
+.footer-socials a::after {
+  content: "↗";
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  transition: transform 0.15s ease, color 0.15s ease;
 }
 
 .footer-socials a:hover {
   color: var(--primary);
+}
+
+.footer-socials a:hover::after {
+  color: var(--primary);
+  transform: translate(2px, -2px);
 }
 
 /* Responsive adjustments */

@@ -75,7 +75,7 @@ const SCHEDULES = {
         batches: {
           A1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Mansi Singh', room: 'A101' },
           A2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Shreya Nehe', room: 'A101B' },
-          A3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Snehal Chaudhri', room: 'A204' },
           B2: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Ashvini Kheole', room: 'A102' },
           B3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Alka Kumbhar', room: 'A106A' },
@@ -90,13 +90,13 @@ const SCHEDULES = {
         batches: {
           A1: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Kalyani Zore', room: 'A105' },
           A2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Mansi Singh', room: 'A101A' },
-          A3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Alka Kumbhar', room: 'A106A' },
-          B2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Mahesh Swami', room: 'A104' },
           C1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Neelam Jadhav', room: 'A104' },
           C2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Smita Sapkal', room: 'A106B' },
-          C3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' }
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       }
     },
@@ -112,7 +112,7 @@ const SCHEDULES = {
           A1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Mansi Singh', room: 'A101A' },
           A2: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Kalyani Zore', room: 'A105' },
           A3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Mansi Singh', room: 'A101B' },
-          B1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Alka Kumbhar', room: 'A106A' },
           B3: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Ashvini Kheole', room: 'A102' },
           C1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Smita Sapkal', room: 'A106B' },
@@ -128,13 +128,13 @@ const SCHEDULES = {
         type: 'practical',
         title: 'Practical Sessions (Slots 3-4: 11:15 AM - 1:15 PM)',
         batches: {
-          A1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Mansi Singh', room: 'A101B' },
           A3: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Kalyani Zore', room: 'A105' },
           B1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Snehal Chaudhri', room: 'A204' },
           B2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Alka Kumbhar', room: 'A106B' },
           B3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Mahesh Swami', room: 'A104' },
-          C1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          C1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C2: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Ashvini Kheole', room: 'A102' },
           C3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Smita Sapkal', room: 'A106A' }
         }
@@ -156,7 +156,7 @@ const SCHEDULES = {
           B2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Mahesh Swami', room: 'A104' },
           B3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Alka Kumbhar', room: 'A106B' },
           C1: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Ashvini Kheole', room: 'A102' },
-          C2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          C2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Smita Sapkal', room: 'A106B' }
         }
       },
@@ -164,13 +164,13 @@ const SCHEDULES = {
         type: 'practical',
         title: 'Practical Sessions (Slots 5-6: 1:45 PM - 3:45 PM)',
         batches: {
-          A1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          A2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          A2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Mansi Singh', room: 'A101A' },
-          B1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          B2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          B3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          C1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          B2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          C1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Smita Sapkal', room: 'A106A' },
           C3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Mahesh Swami', room: 'A104' }
         }
@@ -184,14 +184,14 @@ const SCHEDULES = {
         title: 'Practical Sessions (Slots 3-4: 11:15 AM - 1:15 PM)',
         batches: {
           A1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Smita Sapkal', room: 'A106B' },
-          A2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Nilima Patil', room: 'A105' },
           B1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Alka Kumbhar', room: 'A106A' },
           B2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Mahesh Swami', room: 'A104' },
-          B3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Neelam Jadhav', room: 'A103' },
-          C2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          C3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' }
+          C2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       },
       5: { type: 'theory', code: 'DM', name: 'Digital Marketing', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'E201' },
@@ -212,28 +212,28 @@ const SCHEDULES = {
         batches: {
           A1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101' },
           A2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Shreya Nehe', room: 'Room A101B' },
-          A3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Smita Kathar', room: 'Room A204' },
           B2: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Ashvini Kheole', room: 'Lab A102' },
           B3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106A' },
           C1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Smita Sapkal', room: 'Lab A106B' },
           C2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Jagruti Zope', room: 'Room A105' },
-          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       },
       "5-6": {
         type: 'practical',
         title: 'Practical Sessions (Slots 5-6: 1:45 PM - 3:45 PM)',
         batches: {
-          A1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101A' },
-          A3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106A' },
-          B2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          B2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Mahesh Swami', room: 'Room A104' },
           C1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Neelam Jadhav', room: 'Room A104' },
           C2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Smita Sapkal', room: 'Lab A106B' },
-          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       }
     },
@@ -249,12 +249,12 @@ const SCHEDULES = {
           A1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101A' },
           A2: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Kalyani Zore', room: 'Lab A105' },
           A3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101B' },
-          B1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          B1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106A' },
           B3: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Ashvini Kheole', room: 'Lab A102' },
           C1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Smita Sapkal', room: 'Lab A106B' },
           C2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Jagruti Zope', room: 'Room A103' },
-          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       }
     },
@@ -265,15 +265,15 @@ const SCHEDULES = {
         type: 'practical',
         title: 'Practical Sessions (Slots 3-4: 11:15 AM - 1:15 PM)',
         batches: {
-          A1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101' },
           A3: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Kalyani Zore', room: 'Lab A105' },
           B1: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Smita Kathar', room: 'Room A204' },
           B2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106B' },
           B3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Mahesh Swami', room: 'Room A104' },
-          C1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          C1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C2: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Ashvini Kheole', room: 'Lab A102' },
-          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       },
       5: { type: 'theory', code: 'DM', name: 'Digital Marketing', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'Common Room' },
@@ -286,30 +286,30 @@ const SCHEDULES = {
         type: 'practical',
         title: 'Practical Sessions (Slots 3-4: 11:15 AM - 1:15 PM)',
         batches: {
-          A1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Shreya Nehe', room: 'Room A101B' },
           A3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Nilima Patil', room: 'Lab A101A' },
           B1: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Kalyani Zore', room: 'Lab A105' },
           B2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Mahesh Swami', room: 'Room A104' },
           B3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106B' },
           C1: { code: 'OOPCG Lab', name: 'OOP & Graphics Lab', prof: 'Prof. Ashvini Kheole', room: 'Lab A102' },
-          C2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
-          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+          C2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       },
       "5-6": {
         type: 'practical',
         title: 'Practical Sessions (Slots 5-6: 1:45 PM - 3:45 PM)',
         batches: {
-          A1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
-          A2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          A2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Nilima Patil', room: 'Room A101A' },
-          B1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
-          B2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
-          B3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
-          C1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          B1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          B2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          C1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C2: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Smita Sapkal', room: 'Lab A106A' },
-          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       }
     },
@@ -320,15 +320,15 @@ const SCHEDULES = {
         type: 'practical',
         title: 'Practical Sessions (Slots 3-4: 11:15 AM - 1:15 PM)',
         batches: {
-          A1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
-          A2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
+          A1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          A2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A3: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Nilima Patil', room: 'Room A105' },
           B1: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Prof. Alka Kumbhar', room: 'Lab A106A' },
           B2: { code: 'CEP', name: 'Computer Engg Project', prof: 'Prof. Mahesh Swami', room: 'Room A104' },
-          B3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
-          C1: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
-          C2: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' },
-          C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          C1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          C2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       },
       5: { type: 'theory', code: 'DM', name: 'Digital Marketing', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'Common Room' },
@@ -349,7 +349,7 @@ const SCHEDULES = {
           A2: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Sangeetha Navale', room: 'A104' },
           A3: { code: 'CC Lab', name: 'Cloud Computing Lab', prof: 'Surekha Dhumal', room: 'A101A' },
           B1: { code: 'R&A', name: 'Robotics & Automation', prof: 'Snehal Jagtap', room: 'A102' },
-          B2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B3: { code: 'AI Lab', name: 'AI Lab', prof: 'Jagruti Zope', room: 'A106A' },
           C1: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Snehal Chaudhri', room: 'A204' },
           C2: { code: 'CC Lab', name: 'Cloud Computing Lab', prof: 'Rahul Korke', room: 'A101B' },
@@ -369,10 +369,10 @@ const SCHEDULES = {
           A1: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Sangeetha Navale', room: 'A104' },
           A2: { code: 'CC Lab', name: 'Cloud Computing Lab', prof: 'Surekha Dhumal', room: 'A101A' },
           A3: { code: 'R&A', name: 'Robotics & Automation', prof: 'Shreya Nehe', room: 'A102' },
-          B1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B2: { code: 'AI Lab', name: 'AI Lab', prof: 'Jagruti Zope', room: 'A103' },
           B3: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Snehal Chaudhri', room: 'A204' },
-          C1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          C1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C2: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Mahesh Swami', room: 'A105' },
           C3: { code: 'CC Lab', name: 'Cloud Computing Lab', prof: 'Rahul Korke', room: 'A101B' }
         }
@@ -387,9 +387,9 @@ const SCHEDULES = {
         type: 'practical',
         title: 'Practical Sessions (Slots 1-2: 9:00 AM - 11:00 AM)',
         batches: {
-          A1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A2: { code: 'R&A', name: 'Robotics & Automation', prof: 'Snehal Jagtap', room: 'A102' },
-          A3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B1: { code: 'AI Lab', name: 'AI Lab', prof: 'Pradnya Kothawade', room: 'A103' },
           B2: { code: 'CC Lab', name: 'Cloud Computing Lab', prof: 'Surekha Dhumal', room: 'A101A' },
           B3: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Smita Kathar', room: 'A204' },
@@ -405,14 +405,14 @@ const SCHEDULES = {
         title: 'Practical Sessions (Slots 5-6: 1:45 PM - 3:45 PM)',
         batches: {
           A1: { code: 'CC Lab', name: 'Cloud Computing Lab', prof: 'Surekha Dhumal', room: 'A101A' },
-          A2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          A3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          B1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          B1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B2: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Snehal Chaudhri', room: 'A204' },
-          B3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C1: { code: 'AI Lab', name: 'AI Lab', prof: 'Jagruti Zope', room: 'A106A' },
-          C2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          C3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' }
+          C2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       }
     },
@@ -425,7 +425,7 @@ const SCHEDULES = {
           A2: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Sangeetha Navale', room: 'A104' },
           A3: { code: 'AI Lab', name: 'AI Lab', prof: 'Pradnya Kothawade', room: 'A103' },
           B1: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Kalyani Zore', room: 'A105' },
-          B2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B3: { code: 'R&A', name: 'Robotics & Automation', prof: 'Sangeetha Navale', room: 'A104' },
           C1: { code: 'R&A', name: 'Robotics & Automation', prof: 'Surekha Dhumal', room: 'A101B' },
           C2: { code: 'AI Lab', name: 'AI Lab', prof: 'Jagruti Zope', room: 'A106A' },
@@ -442,15 +442,15 @@ const SCHEDULES = {
         type: 'practical',
         title: 'Practical Sessions (Slots 1-2: 9:00 AM - 11:00 AM)',
         batches: {
-          A1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A2: { code: 'AI Lab', name: 'AI Lab', prof: 'Pradnya Kothawade', room: 'A103' },
           A3: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Ashvini Kheole', room: 'A102' },
           B1: { code: 'CC Lab', name: 'Cloud Computing Lab', prof: 'Surekha Dhumal', room: 'A101A' },
           B2: { code: 'R&A', name: 'Robotics & Automation', prof: 'Sangeetha Navale', room: 'A104' },
-          B3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C1: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Snehal Chaudhri', room: 'A204' },
           C2: { code: 'CC Lab', name: 'Cloud Computing Lab', prof: 'Surekha Dhumal', room: 'A101B' },
-          C3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' }
+          C3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       },
       3: { type: 'theory', code: 'AI', name: 'Artificial Intelligence', prof: 'Jagruti Zope (JZ)', room: 'E203' },
@@ -460,7 +460,7 @@ const SCHEDULES = {
         title: 'Practical Sessions (Slots 5-6: 1:45 PM - 3:45 PM)',
         batches: {
           A1: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Sangeetha Navale', room: 'A104' },
-          A2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A3: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Ashvini Kheole', room: 'A102' },
           B1: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Kalyani Zore', room: 'A105' },
           B2: { code: 'CN Lab', name: 'Computer Network Lab', prof: 'Snehal Chaudhri', room: 'A204' },
@@ -513,11 +513,11 @@ const SCHEDULES = {
         title: 'Practical Sessions (Slots 3-4: 11:15 AM - 1:15 PM)',
         batches: {
           A1: { code: 'ML & DAA Lab', name: 'ML & DAA Lab', prof: 'Neelam Jadhav', room: 'A106A' },
-          A2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          A3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          B1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          B1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B2: { code: 'LPIV', name: 'Laboratory Practice IV', prof: 'Rahul Korke', room: 'A101A' },
-          B3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C1: { code: 'BCT Lab', name: 'Blockchain Tech Lab', prof: 'Shreya Nehe', room: 'A101B' },
           C2: { code: 'ML Lab', name: 'Machine Learning Lab', prof: 'Neelam Jadhav', room: 'A106B' }
         }
@@ -533,16 +533,16 @@ const SCHEDULES = {
         batches: {
           A1: { code: 'BCT Lab', name: 'Blockchain Tech Lab', prof: 'Shreya Nehe', room: 'A101B' },
           A2: { code: 'ML & DAA Lab', name: 'ML & DAA Lab', prof: 'Neelam Jadhav', room: 'A106B' },
-          A3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B1: { code: 'LPIV', name: 'Laboratory Practice IV', prof: 'Snehal Jagtap', room: 'A102' },
-          B2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          B3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          C1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          C1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C2: { code: 'BCT Lab', name: 'Blockchain Tech Lab', prof: 'Shreya Nehe', room: 'A101A' }
         }
       },
       5: { type: 'theory', code: 'ML', name: 'Machine Learning', prof: 'Neelam Jadhav (NJ)', room: 'E204' },
-      6: { type: 'theory', code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' }
+      6: { type: 'theory', code: 'Library', name: 'Library', prof: '-', room: 'Library' }
     },
     3: { // Wednesday
       1: { type: 'theory', code: 'DAA', name: 'Design & Analysis of Algorithms', prof: 'Ratnaraj Jambi (RJ)', room: 'E204' },
@@ -555,11 +555,11 @@ const SCHEDULES = {
         batches: {
           A1: { code: 'LPIV', name: 'Laboratory Practice IV', prof: 'Snehal Jagtap', room: 'A102' },
           A2: { code: 'BCT Lab', name: 'Blockchain Tech Lab', prof: 'Shreya Nehe', room: 'A101B' },
-          A3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B1: { code: 'ML Lab', name: 'Machine Learning Lab', prof: 'Neelam Jadhav', room: 'A106B' },
-          B2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          B3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          C1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          C1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C2: { code: 'LPIV', name: 'Laboratory Practice IV', prof: 'Rahul Korke', room: 'A101A' }
         }
       }
@@ -572,14 +572,14 @@ const SCHEDULES = {
         type: 'practical',
         title: 'Practical Sessions (Slots 5-6: 1:45 PM - 3:45 PM)',
         batches: {
-          A1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           A2: { code: 'LPIV', name: 'Laboratory Practice IV', prof: 'Snehal Jagtap', room: 'A102' },
-          A3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B1: { code: 'BCT Lab', name: 'Blockchain Tech Lab', prof: 'Shreya Nehe', room: 'A101B' },
           B2: { code: 'ML Lab', name: 'Machine Learning Lab', prof: 'Neelam Jadhav', room: 'A106B' },
-          B3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C1: { code: 'LPIV', name: 'Laboratory Practice IV', prof: 'Rahul Korke', room: 'A101A' },
-          C2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' }
+          C2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       }
     },
@@ -593,13 +593,13 @@ const SCHEDULES = {
         title: 'Practical Sessions (Slots 5-6: 1:45 PM - 3:45 PM)',
         batches: {
           A1: { code: 'LPIV', name: 'Laboratory Practice IV', prof: 'Snehal Jagtap', room: 'A102' },
-          A2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          A3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
-          B1: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          A2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          A3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
+          B1: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           B2: { code: 'BCT Lab', name: 'Blockchain Tech Lab', prof: 'Shreya Nehe', room: 'A101B' },
-          B3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' },
+          B3: { code: 'Library', name: 'Library', prof: '-', room: 'Library' },
           C1: { code: 'ML Lab', name: 'Machine Learning Lab', prof: 'Neelam Jadhav', room: 'A106B' },
-          C2: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' }
+          C2: { code: 'Library', name: 'Library', prof: '-', room: 'Library' }
         }
       }
     }

@@ -260,7 +260,7 @@
         </div>
         <div class="card-subject-row">
           <span class="card-subject-code">${entry.code}</span>
-          ${entry.name ? `<span class="card-subject-name">• ${entry.name}</span>` : ''}
+          ${entry.name && entry.name !== entry.code ? `<span class="card-subject-name">• ${entry.name}</span>` : ''}
         </div>
         <div class="card-meta-row">
           <span class="card-prof">${entry.prof || '-'}</span>
@@ -290,7 +290,7 @@
           </div>
           <div class="focused-batch-card">
             <span class="focused-batch-sub">Batch ${selectedBatch} Practical</span>
-            <span class="focused-batch-title">${b.code}${b.name ? ' — ' + b.name : ''}</span>
+            <span class="focused-batch-title">${b.code}${b.name && b.name !== b.code ? ' — ' + b.name : ''}</span>
           </div>
           <div class="card-meta-row">
             <span class="card-prof">${b.prof || '-'}</span>
