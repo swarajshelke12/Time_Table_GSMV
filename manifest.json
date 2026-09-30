@@ -1,0 +1,16 @@
+{
+  "name": "Department Timetable - Computer Engineering",
+  "short_name": "Timetable",
+  "description": "Fast and responsive class timetable viewer for Computer Engineering students.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fcfcfd",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "assets/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
