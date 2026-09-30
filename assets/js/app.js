@@ -361,6 +361,13 @@
       }
     });
 
+    // Register Service Worker for offline capability
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {
+        // Silently handle offline registration failure in environments without HTTPS/SW support
+      });
+    }
+
     // Periodic refresh for live time and lecture indicators
     setInterval(() => {
       updateLiveClock();
