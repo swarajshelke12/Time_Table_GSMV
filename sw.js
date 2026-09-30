@@ -3,7 +3,7 @@
  * Department of Computer Engineering
  */
 
-const CACHE_NAME = 'timetable-gsmv-v1';
+const CACHE_NAME = 'timetable-gsmv-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
