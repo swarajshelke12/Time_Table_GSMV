@@ -139,7 +139,7 @@ const SCHEDULES = {
           C3: { code: 'DS Lab', name: 'Data Structures Lab', prof: 'Smita Sapkal', room: 'A106A' }
         }
       },
-      5: { type: 'theory', code: 'DM', name: 'Discrete Mathematics', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'E201' },
+      5: { type: 'theory', code: 'DM', name: 'Digital Marketing', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'E201' },
       6: { type: 'theory', code: 'ED', name: 'Engineering Drawing', prof: 'Nilam Naidu (NN)', room: 'E201' }
     },
     4: { // Thursday
@@ -194,7 +194,7 @@ const SCHEDULES = {
           C3: { code: 'Self Study', name: 'Library / Self Study', prof: '-', room: 'Library' }
         }
       },
-      5: { type: 'theory', code: 'DM', name: 'Discrete Mathematics', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'E201' },
+      5: { type: 'theory', code: 'DM', name: 'Digital Marketing', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'E201' },
       6: { type: 'theory', code: 'ED', name: 'Engineering Drawing', prof: 'Nilam Naidu (NN)', room: 'E201' }
     }
   },
@@ -276,7 +276,7 @@ const SCHEDULES = {
           C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
         }
       },
-      5: { type: 'theory', code: 'DM', name: 'Discrete Mathematics', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'Common Room' },
+      5: { type: 'theory', code: 'DM', name: 'Digital Marketing', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'Common Room' },
       6: { type: 'theory', code: 'ED', name: 'Engineering Design', prof: 'Prof. Nilam Naidu (NN)', room: 'Common Room' }
     },
     4: { // Thursday
@@ -331,7 +331,7 @@ const SCHEDULES = {
           C3: { code: 'Library', name: 'Library / Self Study', prof: 'Self-Study', room: 'Library' }
         }
       },
-      5: { type: 'theory', code: 'DM', name: 'Discrete Mathematics', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'Common Room' },
+      5: { type: 'theory', code: 'DM', name: 'Digital Marketing', prof: 'Dr. Maya Jadhav (Dr. MJ)', room: 'Common Room' },
       6: { type: 'theory', code: 'ED', name: 'Engineering Design', prof: 'Prof. Nilam Naidu (NN)', room: 'Common Room' }
     }
   },
